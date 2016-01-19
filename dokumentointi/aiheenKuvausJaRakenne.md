@@ -10,4 +10,4 @@
 * Ohjelma ilmoittaa shakista
 * Pelin tallennus
 
-![Määrittelyvaiheen luokkakaavio](http://github.com/tiikkala/shakki/blob/master/dokumentointi/shakki-UML.png)
+![Määrittelyvaiheen luokkakaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/shakki-UML.png)
