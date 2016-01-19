@@ -10,4 +10,4 @@
 * Ohjelma ilmoittaa shakista
 * Pelin tallennus
 
-![Määrittelyvaiheen luokkakaavio][/home/tapio/Desktop/shakki-UML.png]
+![Määrittelyvaiheen luokkakaavio][/home/tapio/shakki/dokumentointi/shakki-UML.png]
