@@ -6,6 +6,7 @@ package engine.board;
  * and open the template in the editor.
  */
 
+import java.util.Map;
 import javalabra.shakki.engine.board.EmptyTile;
 import javalabra.shakki.engine.board.Tile;
 import org.junit.After;

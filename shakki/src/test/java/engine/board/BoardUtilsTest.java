@@ -1,3 +1,5 @@
+package engine.board;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -39,7 +41,28 @@ public class BoardUtilsTest {
     }
     
     @Test
-    public void firstColumnisOnlyFirstColumn() {
+    public void firstColumnIsOnlyFirstColumn() {
         assertEquals(false, BoardUtils.FIRST_COLUMN[1]);
     }
+    
+    @Test
+    public void isFirsRow() {
+        assertEquals(true, BoardUtils.FIRST_ROW[0]);
+    }
+    
+    @Test
+    public void firstRowisOnlyFirstRow() {
+        assertEquals(false, BoardUtils.FIRST_ROW[8]);
+    }
+    
+    @Test
+    public void testAlgebraicNotation() {
+        assertEquals("a8", BoardUtils.ALGEBRAIC_NOTATION[0]);
+    }
+    
+    @Test
+    public void testPositiontoCoordinate() {
+        assertEquals((long) 8, (long) BoardUtils.POSITION_TO_COORDINATE.get("a7"));
+    }
 }
+    

@@ -70,7 +70,7 @@ public class Knight extends Piece {
     }
 
     private static boolean isEightColumnExclusion(final int currentPosition, final int candidatePosition) {
-        return BoardUtils.EIGHT_COLUMN[currentPosition] && (candidatePosition == -15 || candidatePosition == -6
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidatePosition == -15 || candidatePosition == -6
                 || candidatePosition == 10 || candidatePosition == 17);
     }
 }
