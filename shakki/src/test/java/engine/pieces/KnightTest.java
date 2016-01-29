@@ -5,6 +5,7 @@
  */
 package engine.pieces;
 
+import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.pieces.Knight;
 import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.PieceColor;
@@ -20,21 +21,25 @@ import static org.junit.Assert.*;
  * @author tapio
  */
 public class KnightTest {
-    
+
     Piece testPiece;
-    
-    @Before
-    public void setUp() {
-        testPiece = new Knight(0, PieceColor.WHITE);
-    }
-    
+
     @Test
     public void constructorSetsCorrectPieceColor() {
+        testPiece = new Knight(0, PieceColor.WHITE);
         assertEquals(PieceColor.WHITE, testPiece.getPieceColor());
     }
-    
-    @After
-    public void tearDown() {
-    }
 
+    @Test
+    public void knightAlmostTopLeftCorner() {
+        Board board = new Board();
+        testPiece = new Knight(9, PieceColor.WHITE);
+        assertEquals(4, testPiece.calculateLegalMoves(board).size());
+    }
+    
+    public void knightTopLeftCorner() {
+        Board board = new Board();
+        testPiece = new Knight(0, PieceColor.WHITE);
+        assertEquals(3, testPiece.calculateLegalMoves(board).size());
+    }
 }
