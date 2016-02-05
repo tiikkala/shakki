@@ -13,17 +13,21 @@ import javalabra.shakki.engine.board.Move;
  * @author tapio
  */
 public class MoveTransision {
-    
+
     private final Board transisionBoard;
     private final Move move;
     private final MoveStatus moveStatus;
-    
+
     public MoveTransision(final Board transisionBoard,
-                          final Move move,
-                          final MoveStatus moveStatus) {
+            final Move move,
+            final MoveStatus moveStatus) {
         this.transisionBoard = transisionBoard;
         this.move = move;
         this.moveStatus = moveStatus;
     }
-    
+
+    public MoveStatus getMoveStatus() {
+        return this.moveStatus;
+    }
+
 }

@@ -6,10 +6,6 @@ package javalabra.shakki.engine.board;
  * and open the template in the editor.
  */
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,48 +16,43 @@ import static org.junit.Assert.*;
 public class BoardUtilsTest {
     
     @Test
-    public void invalidCoordinateBelowZero() {
+    public void invalidTileCoordinateBelowZero() {
         assertEquals(false, BoardUtils.isValidTileCoordinate(-1));
     }
     
     @Test
-    public void invalidCoordinateOverSixtyFour() {
+    public void invalidTileCoordinateOverSixtyThree() {
         assertEquals(false, BoardUtils.isValidTileCoordinate(64));
     }
     
     @Test
-    public void isvalidCoordinate() {
+    public void isValidTileCoordinateValid() {
         assertEquals(true, BoardUtils.isValidTileCoordinate(12));
     }
     
     @Test
-    public void isFirstColumn() {
+    public void isFirstColumnFirstColumn() {
         assertEquals(true, BoardUtils.FIRST_COLUMN[0]);
     }
     
     @Test
-    public void firstColumnIsOnlyFirstColumn() {
+    public void ifFirstColumnOnlyFirstColumn() {
         assertEquals(false, BoardUtils.FIRST_COLUMN[1]);
     }
     
     @Test
-    public void isFirsRow() {
+    public void isFirsRowFirstRow() {
         assertEquals(true, BoardUtils.FIRST_ROW[0]);
     }
     
     @Test
-    public void firstRowisOnlyFirstRow() {
+    public void isFirstRowisOnlyFirstRow() {
         assertEquals(false, BoardUtils.FIRST_ROW[8]);
     }
-    
+       
     @Test
-    public void testAlgebraicNotation() {
-        assertEquals("a8", BoardUtils.ALGEBRAIC_NOTATION[0]);
-    }
-    
-    @Test
-    public void testPositiontoCoordinate() {
-        assertEquals((long) 8, (long) BoardUtils.POSITION_TO_COORDINATE.get("a7"));
+    public void positiontoCoordinateReturnsCorrectCoordinate() {
+        assertEquals((Integer) 8, BoardUtils.POSITION_TO_COORDINATE.get("a7"));
     }
 }
     

@@ -5,6 +5,10 @@
  */
 package javalabra.shakki.engine.pieces;
 
+import javalabra.shakki.engine.player.BlackPlayer;
+import javalabra.shakki.engine.player.Player;
+import javalabra.shakki.engine.player.WhitePlayer;
+
 /**
  *
  * @author tapio
@@ -26,6 +30,11 @@ public enum PieceColor {
                 public boolean isBlack() {
                     return false;
                 }
+
+                @Override
+                public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
+                    return whitePlayer;
+                }
             },
     BLACK {
                 @Override
@@ -42,6 +51,11 @@ public enum PieceColor {
                 public boolean isBlack() {
                     return true;
                 }
+
+                @Override
+                public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
+                    return blackPlayer;
+                }
             };
 
     public abstract int getDirection();
@@ -49,4 +63,6 @@ public enum PieceColor {
     public abstract boolean isWhite();
 
     public abstract boolean isBlack();
+
+    public abstract Player choosePlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer);
 }
