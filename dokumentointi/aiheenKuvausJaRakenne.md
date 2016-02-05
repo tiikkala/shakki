@@ -7,7 +7,7 @@
 * Voittaminen (ohjelma ilmoittaa matista)
 
 **Laajennukset:**
-* Ohjelma ilmoittaa shakista
-* Pelin tallennus
+* Keskeneräisen pelin tallennus
+* Tekoäly
 
 ![Määrittelyvaiheen luokkakaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/shakki-UML.png)

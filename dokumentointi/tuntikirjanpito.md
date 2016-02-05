@@ -13,3 +13,17 @@
 * Yksikkötestauksen muistuttelu mieleen 1h
 * Ensimmäisten testien kirjoittaminen 2h
 * Pit-raporttien säätö 1h (vieläkin näyttää 0 %, en tiedä pitäisko näyttää muuta)
+
+**Ma 1.2.2015**
+* Piece-luokkien koodausta 4h
+* Board- ja BoardBuilderin koodaus 4h
+
+**Ti 2.2.2015**
+* 8h Move-luokkien koodausta
+
+**Pe 5.2.2015**
+* 4h Move-luokan koodausta
+* 2h Pitin kanssa tappelua, koodin yleistä refaktorointia
+* 4h Testien kirjoittamista
+
+ 
