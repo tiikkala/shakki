@@ -2,7 +2,7 @@ Kaksinpelinä pelattava shakkiohjelma yksinkertaisella graafisella käyttöliitt
 
 **Dokumentointi**
 
-* [aiheen kuvaus](dokumentointi/aiheenKuvausJaMääritelmä.md)
-* [testausdokumentaatio](dokumentointi/testausdokumentointi.md)
-* [tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
+* [aiheen kuvaus](https://github.com/tiikkala/shakki/blob/master/dokumentointi/aiheenKuvausJaRakenne.md)
+* [testausdokumentaatio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/testausdokumentointi.md)
+* [tuntikirjanpito](https://github.com/tiikkala/shakki/blob/master/dokumentointi/tuntikirjanpito.md)
 
