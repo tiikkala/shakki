@@ -82,14 +82,14 @@ public class KnightTest {
         final Move bm8 = MoveFactory
                 .createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e5"), BoardUtils.POSITION_TO_COORDINATE.get("f3"));
 
-//        assertTrue(blackLegals.contains(bm1));
-//        assertTrue(blackLegals.contains(bm2));
-//        assertTrue(blackLegals.contains(bm3));
-//        assertTrue(blackLegals.contains(bm4));
-//        assertTrue(blackLegals.contains(bm5));
-//        assertTrue(blackLegals.contains(bm6));
-//        assertTrue(blackLegals.contains(bm7));
-//        assertTrue(blackLegals.contains(bm8));
+        assertTrue(blackLegals.contains(bm1));
+        assertTrue(blackLegals.contains(bm2));
+        assertTrue(blackLegals.contains(bm3));
+        assertTrue(blackLegals.contains(bm4));
+        assertTrue(blackLegals.contains(bm5));
+        assertTrue(blackLegals.contains(bm6));
+        assertTrue(blackLegals.contains(bm7));
+        assertTrue(blackLegals.contains(bm8));
 
     }
 }

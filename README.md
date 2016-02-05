@@ -2,6 +2,7 @@ Kaksinpelinä pelattava shakkiohjelma yksinkertaisella graafisella käyttöliitt
 
 **Dokumentointi**
 
-[aiheen kuvaus](dokumentaatio/aiheenKuvausJaMääritelmä.md)
-[tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+* [aiheen kuvaus](dokumentointi/aiheenKuvausJaMääritelmä.md)
+* [testausdokumentaatio](dokumentointi/testausdokumentointi.md)
+* [tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
 
