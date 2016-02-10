@@ -22,7 +22,7 @@ import javalabra.shakki.engine.board.Tile;
  */
 public class Queen extends Piece {
 
-    private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7 - 1, 1, 7, 8, 9};
+    private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
     public Queen(final int piecePosition, final PieceColor pieceColor) {
         super(PieceType.QUEEN, piecePosition, pieceColor);
@@ -30,7 +30,6 @@ public class Queen extends Piece {
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
-
         final List<Move> legalMoves = new ArrayList<>();
         for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
             int candidateDestinationCoordinate = this.piecePosition;
@@ -46,8 +45,8 @@ public class Queen extends Piece {
                         legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
                     } else {
                         final Piece pieceAtDestination = candidateDestinationTile.getPiece();
-                        final PieceColor pieceColor = pieceAtDestination.getPieceColor();
-                        if (this.pieceColor != pieceColor) {
+                        final PieceColor destinationPieceColor = pieceAtDestination.getPieceColor();
+                        if (this.pieceColor != destinationPieceColor) {
                             legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
                         break;
@@ -59,7 +58,7 @@ public class Queen extends Piece {
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == -7);
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7);
     }
 
     private static boolean isEightColumnExclusion(final int currentPosition, final int candidateOffset) {

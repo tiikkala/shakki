@@ -35,21 +35,6 @@ public abstract class Piece {
     public abstract Collection<Move> calculateLegalMoves(final Board board);
 
     @Override
-    public boolean equals(final Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Piece)) {
-            return false;
-        }
-        final Piece otherPiece = (Piece) other;
-        return this.piecePosition == otherPiece.getPiecePosition()
-                && this.pieceType == otherPiece.getPieceType()
-                && this.pieceColor == otherPiece.getPieceColor()
-                && this.isFirstMove == otherPiece.isFirstMove();
-    }
-
-    @Override
     public int hashCode() {
         return this.cachedHashCode;
     }
@@ -72,11 +57,26 @@ public abstract class Piece {
 
     public abstract Piece movePiece(final Move move);
 
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Piece)) {
+            return false;
+        }
+        final Piece otherPiece = (Piece) other;
+        return this.piecePosition == otherPiece.getPiecePosition()
+                && this.pieceType == otherPiece.getPieceType()
+                && this.pieceColor == otherPiece.getPieceColor()
+                && this.isFirstMove == otherPiece.isFirstMove();
+    }
+
     private int computeHashCode() {
-        int result = this.pieceType.hashCode();
-        result = 31 * result + this.pieceColor.hashCode();
-        result = 31 * result + this.piecePosition;
-        result = 31 * result + (this.isFirstMove ? 1 : 0);
+        int result = pieceType.hashCode();
+        result = 31 * result + pieceColor.hashCode();
+        result = 31 * result + piecePosition;
+        result = 31 * result + (isFirstMove ? 1 : 0);
         return result;
     }
 }

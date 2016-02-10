@@ -19,11 +19,20 @@
 * Board- ja BoardBuilderin koodaus 4h
 
 **Ti 2.2.2015**
-* 8h Move-luokkien koodausta
+* Move-luokkien koodausta 8h
 
 **Pe 5.2.2015**
-* 4h Move-luokan koodausta
-* 2h Pitin kanssa tappelua, koodin yleistä refaktorointia
-* 4h Testien kirjoittamista
+* Move-luokan koodausta 4h
+* Pitin kanssa tappelua, koodin yleistä refaktorointia 2h
+* Testien kirjoittamista 4h
 
- 
+**La 6.2.2015**
+* Testien kirjoittamista 4h
+
+**Ke 10.2.2015**
+* Testien kirjoittamista 4h
+
+**TODO**
+* Testit seuraaville luokille: Player, Move, Board
+* Pawn-nappulan erikoissiirrot ja niiden testaus
+* Käyttöliittymä

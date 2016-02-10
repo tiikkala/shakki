@@ -21,10 +21,9 @@ import static org.junit.Assert.*;
  * @author tapio
  */
 public class KnightTest {
-    
+
     // Black and white knight positioned on an empty board. For white 7 normal moves & 1 attacking move,
     // for black 6 normal moves & 1 attacking move.
-
     Builder boardBuilder;
 
     @Before
@@ -38,25 +37,25 @@ public class KnightTest {
         boardBuilder.setPiece(new King(60, PieceColor.WHITE));
     }
 
-    public Board buildForWhite() {
+    private Board buildForWhite() {
         boardBuilder.setMoveMaker(PieceColor.WHITE);
         return boardBuilder.build();
     }
 
-    public Board buildForBlack() {
+    private Board buildForBlack() {
         boardBuilder.setMoveMaker(PieceColor.BLACK);
         return boardBuilder.build();
     }
 
     @Test
-    public void whiteKnightHasCorrectNumberofMoves() {
+    public void whitePlayerHasCorrectNumberofMoves() {
         final Board board = buildForWhite();
         final Collection<Move> whiteLegals = board.getWhitePlayer().getLegalMoves();
         assertEquals(13, whiteLegals.size());
     }
 
     @Test
-    public void blackKnightHasCorrectNumberofMoves() {
+    public void blackPlayerHasCorrectNumberofMoves() {
         final Board board = buildForBlack();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         assertEquals(12, blackLegals.size());
@@ -180,5 +179,21 @@ public class KnightTest {
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm7 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("f6"), BoardUtils.POSITION_TO_COORDINATE.get("d7"));
         assertTrue(blackLegals.contains(bm7));
+    }
+
+    @Test
+    public void illegalWhiteMoveisIllegal() {
+        final Board board = buildForWhite();
+        final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
+        final Move bm5 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e8"), BoardUtils.POSITION_TO_COORDINATE.get("h1"));
+        assertFalse(blackLegals.contains(bm5));
+    }
+
+    @Test
+    public void illegalBlackMoveisIllegal() {
+        final Board board = buildForWhite();
+        final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
+        final Move bm5 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e8"), BoardUtils.POSITION_TO_COORDINATE.get("h1"));
+        assertFalse(blackLegals.contains(bm5));
     }
 }

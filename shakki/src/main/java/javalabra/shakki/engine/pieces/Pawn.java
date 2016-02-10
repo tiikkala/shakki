@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javalabra.shakki.engine.board.AttackMove;
 import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.board.BoardUtils;
 import javalabra.shakki.engine.board.Move;
@@ -30,37 +31,36 @@ public class Pawn extends Piece {
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
         for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
-            int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset * this.pieceColor.getDirection();
+            int candidateDestinationCoordinate = this.piecePosition + (currentCandidateOffset * this.pieceColor.getDirection());
             if (!BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                 continue;
             }
             if (currentCandidateOffset == 8 && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                 // TODO: Luo erillinen PawnMove-luokka, promotions, en passe, attack
                 legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
-            } else if (candidateDestinationCoordinate == 16 && this.isFirstMove() && ((BoardUtils.SECOND_ROW[this.piecePosition]
-                    && this.pieceColor.isWhite()) || (BoardUtils.SECOND_ROW[this.piecePosition] && this.pieceColor.isBlack()))) {
-                final int behindCandidateDestinationCoordinate = this.piecePosition - this.pieceColor.getDirection() * 8;
+            } else if (currentCandidateOffset == 16 && this.isFirstMove() && ((BoardUtils.SECOND_ROW[this.piecePosition]
+                    && this.pieceColor.isWhite()) || (BoardUtils.SEVENTH_ROW[this.piecePosition] && this.pieceColor.isBlack()))) {
+                final int behindCandidateDestinationCoordinate = this.piecePosition - (this.pieceColor.getDirection() * 8);
                 if (!board.getTile(behindCandidateDestinationCoordinate).isTileOccupied() && !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
                 }
             } else if (currentCandidateOffset == 7
-                    && (!((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceColor.isWhite())
-                    || (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceColor.isBlack())))) {
+                    && !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceColor.isWhite())
+                    || (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceColor.isBlack()))) {
                 if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if (this.pieceColor != pieceOnCandidate.pieceColor) {
-                        legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
+                        legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                     }
                 }
             } else if (currentCandidateOffset == 9
-                    && (!((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceColor.isWhite())
-                    || (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceColor.isBlack())))) {
-                legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
-            }
-            if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
-                if (this.pieceColor != pieceOnCandidate.pieceColor) {
-                    legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
+                    && !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceColor.isWhite())
+                    || (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceColor.isBlack()))) {
+                if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                    final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
+                    if (this.pieceColor != pieceOnCandidate.pieceColor) {
+                        legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
+                    }
                 }
             }
         }

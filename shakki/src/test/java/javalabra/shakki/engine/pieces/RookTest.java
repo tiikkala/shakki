@@ -12,6 +12,7 @@ import javalabra.shakki.engine.board.BoardUtils;
 import javalabra.shakki.engine.board.Move;
 import javalabra.shakki.engine.board.MoveFactory;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,11 +22,11 @@ import org.junit.Test;
  * @author tapio
  */
 public class RookTest {
-    
-    // Black rook with 12 normal moves & 1 attacing move (calculate legal moves accepts moves that leave 
-    // the player in check). King has 4 possible moves.
 
+    // Black rook with 11 normal moves & 1 attacing move (calculate legal moves accepts moves that leave 
+    // the player in check). Black King has 5 possible moves.
     Builder boardBuilder;
+    Board board;
 
     @Before
     public void setUp() {
@@ -36,23 +37,18 @@ public class RookTest {
         // White Layout
         boardBuilder.setPiece(new Rook(52, PieceColor.WHITE));
         boardBuilder.setPiece(new King(60, PieceColor.WHITE));
-    }
-
-    public Board buildBoard() {
-        boardBuilder.setMoveMaker(PieceColor.BLACK);
-        return boardBuilder.build();
+        boardBuilder.setMoveMaker(PieceColor.WHITE);
+        board = boardBuilder.build();
     }
 
     @Test
-    public void rookHasCorrectNumberofMoves() {
-        final Board board = buildBoard();
+    public void blackPlayerHasCorrectNumberofMoves() {
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         assertEquals(17, blackLegals.size());
     }
 
     @Test
     public void blackRookHasE5() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm1 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("e5"));
         assertTrue(blackLegals.contains(bm1));
@@ -60,7 +56,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasE6() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm2 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("e6"));
         assertTrue(blackLegals.contains(bm2));
@@ -68,7 +63,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasE7() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm3 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("e7"));
         assertTrue(blackLegals.contains(bm3));
@@ -76,7 +70,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasF4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm4 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("f4"));
         assertTrue(blackLegals.contains(bm4));
@@ -84,7 +77,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasG4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm5 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("g4"));
         assertTrue(blackLegals.contains(bm5));
@@ -92,7 +84,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasH4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm6 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("h4"));
         assertTrue(blackLegals.contains(bm6));
@@ -100,7 +91,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasD4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm7 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("d4"));
         assertTrue(blackLegals.contains(bm7));
@@ -108,7 +98,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasC4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm8 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("c4"));
         assertTrue(blackLegals.contains(bm8));
@@ -116,7 +105,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasB4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm9 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("b4"));
         assertTrue(blackLegals.contains(bm9));
@@ -124,7 +112,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasA4() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm10 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("a4"));
         assertTrue(blackLegals.contains(bm10));
@@ -132,7 +119,6 @@ public class RookTest {
 
     @Test
     public void blackRookHasE3() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm11 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("e3"));
         assertTrue(blackLegals.contains(bm11));
@@ -140,9 +126,15 @@ public class RookTest {
 
     @Test
     public void blackRookHasE2() {
-        final Board board = buildBoard();
         final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
         final Move bm12 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e4"), BoardUtils.POSITION_TO_COORDINATE.get("e2"));
         assertTrue(blackLegals.contains(bm12));
+    }
+
+    @Test
+    public void illegalMoveisIllegal() {
+        final Collection<Move> blackLegals = board.getBlackPlayer().getLegalMoves();
+        final Move bm5 = MoveFactory.createMove(board, BoardUtils.POSITION_TO_COORDINATE.get("e8"), BoardUtils.POSITION_TO_COORDINATE.get("h1"));
+        assertFalse(blackLegals.contains(bm5));
     }
 }

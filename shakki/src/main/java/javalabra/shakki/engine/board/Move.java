@@ -31,6 +31,7 @@ public abstract class Move {
         int result = 1;
         result = prime * result + this.movedPiece.getPiecePosition();
         result = prime * result + this.destinationCoordinate;
+        result = prime * result + this.movedPiece.hashCode();
         return result;
     }
 
@@ -44,7 +45,8 @@ public abstract class Move {
         }
         final Move otherMove = (Move) other;
         return this.getDestinationCoordinate() == otherMove.getDestinationCoordinate()
-                && this.getMovedPiece() == otherMove.getMovedPiece();
+                && getMovedPiece() == otherMove.getMovedPiece()
+                && getCurrentCoordinate() == otherMove.getCurrentCoordinate();
     }
 
     public int getDestinationCoordinate() {
@@ -78,5 +80,10 @@ public abstract class Move {
 
     public Piece getMovedPiece() {
         return this.movedPiece;
+    }
+    
+    @Override
+    public String toString() {
+        return Integer.toString(this.destinationCoordinate);
     }
 }

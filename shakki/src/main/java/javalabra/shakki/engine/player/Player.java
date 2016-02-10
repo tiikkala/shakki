@@ -30,7 +30,6 @@ public abstract class Player {
     Player(final Board board,
             final Collection<Move> legalMoves,
             final Collection<Move> opponentsMoves) {
-
         this.board = board;
         this.playerKing = establishKing();
         this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves, calculateKingCastles(legalMoves, opponentsMoves)));
