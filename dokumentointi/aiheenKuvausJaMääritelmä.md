@@ -6,8 +6,8 @@
 * Siirron tekeminen
 * Voittaminen (ohjelma ilmoittaa matista)
 
-**Laajennukset:**
-* Ohjelma ilmoittaa shakista
+**Mahdolliset laajennukset:**
 * Pelin tallennus
+* Tekoäly
 
 ![Määrittelyvaiheen luokkakaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/shakki-UML.png)

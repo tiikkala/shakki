@@ -169,7 +169,7 @@ public class Board {
             this.nextMoveMaker = nextMoveMaker;
             return this;
         }
-
+        
         public Board build() {
             return new Board(this);
         }

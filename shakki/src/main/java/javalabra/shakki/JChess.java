@@ -8,9 +8,12 @@ package javalabra.shakki;
 import java.util.Collection;
 import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.board.Move;
+import javalabra.shakki.engine.pieces.Bishop;
 import javalabra.shakki.engine.pieces.King;
+import javalabra.shakki.engine.pieces.Pawn;
 import javalabra.shakki.engine.pieces.PieceColor;
 import javalabra.shakki.engine.pieces.Queen;
+import javalabra.shakki.engine.pieces.Rook;
 
 /**
  *
@@ -24,25 +27,19 @@ public class JChess {
 //        System.out.println(board);
 //        
 //    }    
-        Board.Builder boardBuilder;
         Board board;
+        Board.Builder boardBuilder;
 
         boardBuilder = new Board.Builder();
         // Black Layout
         boardBuilder.setPiece(new King(4, PieceColor.BLACK));
-        boardBuilder.setPiece(new Queen(36, PieceColor.BLACK));
+        boardBuilder.setPiece(new Rook(12, PieceColor.BLACK));
         // White Layout
-        boardBuilder.setPiece(new Queen(54, PieceColor.WHITE));
+        boardBuilder.setPiece(new Pawn(45, PieceColor.WHITE));
         boardBuilder.setPiece(new King(60, PieceColor.WHITE));
+        boardBuilder.setPiece(new Queen(43, PieceColor.BLACK));
+        boardBuilder.setPiece(new Bishop(39, PieceColor.BLACK));
         boardBuilder.setMoveMaker(PieceColor.WHITE);
         board = boardBuilder.build();
-        
-        Collection<Move> whiteMoves = board.getWhitePlayer().getLegalMoves();
-        board.getTile(54).getPiece().calculateLegalMoves(board);
-        
-        for (Move move : whiteMoves) {
-            System.out.println(move.toString());
-        }
-        
     }
 }

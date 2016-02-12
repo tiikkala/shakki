@@ -36,7 +36,7 @@ public abstract class Player {
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentsMoves).isEmpty();
     }
 
-    private King establishKing() {
+    protected King establishKing() {
         for (final Piece piece : getActivePieces()) {
             if (piece.getPieceType().isKing()) {
                 return (King) piece;
@@ -45,10 +45,10 @@ public abstract class Player {
         throw new RuntimeException("Should not reach here! Not a valid board!");
     }
 
-    protected static Collection<Move> calculateAttacksOnTile(final int piecePosition, final Collection<Move> moves) {
+    public static Collection<Move> calculateAttacksOnTile(final int tile, final Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList<>();
         for (final Move move : moves) {
-            if (piecePosition == move.getDestinationCoordinate()) {
+            if (tile == move.getDestinationCoordinate()) {
                 attackMoves.add(move);
             }
         }
@@ -77,11 +77,11 @@ public abstract class Player {
         return this.legalMoves.contains(move);
     }
 
-    public boolean isCheck() {
+    public boolean isInCheck() {
         return this.isInCheck;
     }
 
-    public boolean isCheckMate() {
+    public boolean isInCheckMate() {
         return this.isInCheck && !hasEscapeMoves();
     }
 
@@ -94,7 +94,7 @@ public abstract class Player {
             return new MoveTransision(this.board, move, MoveStatus.ILLEGAL);
         }
         final Board transisionBoard = move.execute();
-        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile(transisionBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
+        final Collection<Move> kingAttacks = calculateAttacksOnTile(transisionBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
                 transisionBoard.currentPlayer().getLegalMoves());
         if (!kingAttacks.isEmpty()) {
             return new MoveTransision(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);

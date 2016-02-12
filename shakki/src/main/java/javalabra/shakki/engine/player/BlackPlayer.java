@@ -41,13 +41,13 @@ public class BlackPlayer extends Player {
 
     @Override
     public Player getOpponent() {
-        return this.board.getBlackPlayer();
+        return this.board.getWhitePlayer();
     }
 
     @Override
     public Collection<Move> calculateKingCastles(Collection<Move> playersLegalMoves, Collection<Move> opponentsLegalMoves) {
         final List<Move> kingCastles = new ArrayList<>();
-        if (this.playerKing.isFirstMove() && !this.isCheck()) {
+        if (this.playerKing.isFirstMove() && !this.isInCheck()) {
             if (!this.board.getTile(5).isTileOccupied() && !this.board.getTile(6).isTileOccupied()) {
                 final Tile rookTile = this.board.getTile(7);
                 if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove()) {

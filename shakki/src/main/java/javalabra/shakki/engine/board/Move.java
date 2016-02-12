@@ -5,6 +5,7 @@
  */
 package javalabra.shakki.engine.board;
 
+import javalabra.shakki.engine.board.Board.Builder;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
@@ -44,7 +45,7 @@ public abstract class Move {
             return false;
         }
         final Move otherMove = (Move) other;
-        return this.getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+        return getDestinationCoordinate() == otherMove.getDestinationCoordinate()
                 && getMovedPiece() == otherMove.getMovedPiece()
                 && getCurrentCoordinate() == otherMove.getCurrentCoordinate();
     }
@@ -62,14 +63,13 @@ public abstract class Move {
     public abstract Piece getAttackedPiece();
 
     public Board execute() {
-        final Board.Builder builder = new Board.Builder();
+        final Builder builder = new Board.Builder();
         for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
-            // TODO hashcode and equals for pieces
             if (!this.movedPiece.equals(piece)) {
                 builder.setPiece(piece);
             }
         }
-        for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
+        for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
             builder.setPiece(piece);
         }
         // move the piece
