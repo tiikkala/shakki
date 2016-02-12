@@ -16,8 +16,7 @@ import javalabra.shakki.engine.board.Move;
 import javalabra.shakki.engine.board.NormalMove;
 
 /**
- *
- * @author tapio
+ *Shakin sotilas.
  */
 public class Pawn extends Piece {
 

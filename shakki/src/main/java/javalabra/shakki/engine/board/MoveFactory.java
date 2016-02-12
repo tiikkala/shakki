@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package javalabra.shakki.engine.board;
-
 import static javalabra.shakki.engine.board.Move.NULL_MOVE;
 
 /**
- *
- * @author tapio
+ *Factory-luokka Move-olioiden luomiseksi.
  */
 public class MoveFactory {
     
@@ -17,6 +15,17 @@ public class MoveFactory {
         throw new RuntimeException("Not instantiable!");
     }
     
+    /**
+    *Metodi luo sille parametrina syötettyjä tietoja vastaavan
+    *Move-olion. Jos kyseistä siirtoa ei voi tehdä, metodi palauttaa
+    * NULL_MOVE-olion, jota ei voi koskaan toteuttaa laudalla.
+    * 
+    * @param board pelilauta, jolla siirto tehdään
+    * @param currentCoordinate mistä siirretään
+    * @param destinationCoordinate mihin siirretään
+    * 
+    * @return koordinaatteja vastaava siirto laudalla
+    */    
     public static Move createMove(final Board board,
                                   final int currentCoordinate,
                                   final int destinationCoordinate) {

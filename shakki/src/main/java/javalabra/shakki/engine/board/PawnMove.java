@@ -8,10 +8,9 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ *Bastrakti aliluokka sotilaan erilaisille siirroille.
  */
-public class PawnMove extends Move {
+public abstract class PawnMove extends Move {
 
     public PawnMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
         super(board, movedPiece, destinationCoordinate);
@@ -23,7 +22,7 @@ public class PawnMove extends Move {
     }
 
     @Override
-    public boolean isCastlingMove() {
+    public boolean isCastleMove() {
         return false;
     }
 

@@ -9,8 +9,7 @@ import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.Rook;
 
 /**
- *
- * @author tapio
+ *Tornitussiirto.
  */
 public abstract class CastleMove extends Move {
 
@@ -36,7 +35,7 @@ public abstract class CastleMove extends Move {
     }
 
     @Override
-    public boolean isCastlingMove() {
+    public boolean isCastleMove() {
         return true;
     }
 

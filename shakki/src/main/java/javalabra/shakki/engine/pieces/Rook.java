@@ -17,8 +17,7 @@ import javalabra.shakki.engine.board.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *
- * @author tapio
+ *Shakin torni.
  */
 public class Rook extends Piece {
 

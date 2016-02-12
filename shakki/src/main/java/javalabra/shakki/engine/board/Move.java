@@ -9,8 +9,7 @@ import javalabra.shakki.engine.board.Board.Builder;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ *Siirto-luokka, joka tarjoaa metodin siirron toteuttamiseen.
  */
 public abstract class Move {
 
@@ -59,9 +58,17 @@ public abstract class Move {
     }
 
     public abstract boolean isAttack();
-    public abstract boolean isCastlingMove();
+    /**
+     * Metodi kertoo, onko kyseessä tornitussiirto.
+     */
+    public abstract boolean isCastleMove();
     public abstract Piece getAttackedPiece();
 
+    /**
+     * Metodi toteuttaa siirron luomalla uuden pelilaudan, jossa kyseinen siirto on tehty ja
+     * siirtovuoro siirretty seuraavalle pelaajalle.
+     * @return palauttaa pelilaudan
+     */  
     public Board execute() {
         final Builder builder = new Board.Builder();
         for (final Piece piece : this.board.currentPlayer().getActivePieces()) {

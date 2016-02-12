@@ -7,8 +7,7 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ *Tyhjä ruutu.
  */
 public class EmptyTile extends Tile {
     

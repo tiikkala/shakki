@@ -7,8 +7,7 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ * Varattu ruutu.
  */
 public final class OccupiedTile extends Tile {
     
@@ -24,6 +23,10 @@ public final class OccupiedTile extends Tile {
         return true;
     }
     
+    /**
+     * Palauttaa ruudussa olevan nappulan
+     * @return ruudussa oleva nappula
+     */
     @Override
     public Piece getPiece() {
         return this.pieceOnTile;

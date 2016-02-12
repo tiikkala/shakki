@@ -8,8 +8,7 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ * Siirto, joka ei ole koskaan toteutettavissa.
  */
 public class NullMove extends Move {
 
@@ -27,7 +26,7 @@ public class NullMove extends Move {
     }
 
     @Override
-    public boolean isCastlingMove() {
+    public boolean isCastleMove() {
         return false;
     }
 

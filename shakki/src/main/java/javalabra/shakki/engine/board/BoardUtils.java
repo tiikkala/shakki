@@ -10,11 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author tapio
+ *Utility-luokka apumetodeille.
  */
 public class BoardUtils {
 
+    /**
+     * 
+     */
     public static final boolean[] FIRST_COLUMN = initColumn(0);
     public static final boolean[] SECOND_COLUMN = initColumn(1);
     public static final boolean[] THIRD_COLUMN = initColumn(2);

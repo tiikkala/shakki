@@ -17,8 +17,7 @@ import javalabra.shakki.engine.board.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *
- * @author tapio
+ *Shakin lähetti.
  */
 public class Bishop extends Piece {
 
@@ -30,7 +29,6 @@ public class Bishop extends Piece {
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
-
         final List<Move> legalMoves = new ArrayList<>();
         for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
             int candidateDestinationCoordinate = this.piecePosition;

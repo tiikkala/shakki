@@ -8,8 +8,7 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ * Sotilaan en passant -niminen erikoissiirto.
  */
 public class PawnEnPassantAttackMove extends PawnAttackMove {
 

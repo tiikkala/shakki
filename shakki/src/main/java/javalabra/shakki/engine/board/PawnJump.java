@@ -8,8 +8,7 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ * Sotilaan erikoissiirto, jossa se siirtyy yhden ruudun sijaan kaksi ruutua eteenpäin.
  */
 public class PawnJump extends Move {
 
@@ -23,7 +22,7 @@ public class PawnJump extends Move {
     }
 
     @Override
-    public boolean isCastlingMove() {
+    public boolean isCastleMove() {
         return false;
     }
 

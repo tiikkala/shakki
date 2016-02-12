@@ -17,8 +17,7 @@ import javalabra.shakki.engine.board.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *
- * @author tapio
+ *Shakin kuningatar.
  */
 public class Queen extends Piece {
 
@@ -27,7 +26,15 @@ public class Queen extends Piece {
     public Queen(final int piecePosition, final PieceColor pieceColor) {
         super(PieceType.QUEEN, piecePosition, pieceColor);
     }
-
+    /**
+     * Metodi määrittää, mihin kuningatar voi liikkua pelilaudalla. Metodin
+     * palauttamassa listassa siirtoja on mukana myös sellaiset siirrot, jotka
+     * ovat pelin sääntöjen vastaisia, koska ne jättävät pelaajan kuninkaan
+     * shakkiin.
+     *
+     * @param board pelilauta
+     * @return lista siirroista, jotka kuningatar voi tehdä
+     */
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();

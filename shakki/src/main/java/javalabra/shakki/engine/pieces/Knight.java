@@ -16,8 +16,7 @@ import javalabra.shakki.engine.board.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *
- * @author tapio
+ *Shakin hevonen.
  */
 public class Knight extends Piece {
 

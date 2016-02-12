@@ -17,8 +17,7 @@ import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.PieceColor;
 
 /**
- *
- * @author tapio
+ *Pelaaja-luokka.
  */
 public abstract class Player {
 
@@ -45,6 +44,12 @@ public abstract class Player {
         throw new RuntimeException("Should not reach here! Not a valid board!");
     }
 
+    /**
+     * Metodi määrittää siirrot, joilla pääsee kyseiseen ruutuun.
+     * @param tile ruutu, johon kohdistuvat hyökkäykset halutaan selvittää
+     * @param moves läpi käytävät siirrot
+     * @return palauttaa listan siirroista, joilla pääsee annettuun ruutuun
+     */
     public static Collection<Move> calculateAttacksOnTile(final int tile, final Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList<>();
         for (final Move move : moves) {
@@ -85,10 +90,21 @@ public abstract class Player {
         return this.isInCheck && !hasEscapeMoves();
     }
 
+    /**
+     * Metodi kertoo, onko peli päätynyt tasapeliin eli tilanteeseen,
+     * jossa jompi kumpi pelaajista ei pysty tekemään yhtäkään siirtoa.
+     * @return true, jos tasapeli
+     */
     public boolean isStaleMate() {
         return !this.isInCheck && !hasEscapeMoves();
     }
 
+    /**
+     * Metodi palauttaa MoveTransision-olion, joka kertoo, voidaanko siirto tehdä ilman,
+     * että siirron tehneen pelaajan kuningas jää uhatuksi.
+     * @param move siirto, jonka laillisuus halutaan tarkistaa
+     * @return MoveTransision-olio, josta selviää siirron laillisuus
+     */
     public MoveTransision makeMove(final Move move) {
         if (!isMoveLegal(move)) {
             return new MoveTransision(this.board, move, MoveStatus.ILLEGAL);
@@ -105,5 +121,11 @@ public abstract class Player {
     public abstract Collection<Piece> getActivePieces();
     public abstract PieceColor getPieceColor();
     public abstract Player getOpponent();
+    /**
+     * Metodi kertoo, onko pelaajan mahdollista tehdä tornitus-nimistä erikoissiirtoa,
+     * @param playersLegalMoves pelaajan mahdolliset siirrot
+     * @param opponentsLegalMoves vastustajan mahdolliset siirrot
+     * @return palauttaa listan mahdollisista tornitussiirroista (näitä on enintään kaksi)
+     */
     public abstract Collection<Move> calculateKingCastles(Collection<Move> playersLegalMoves, Collection<Move> opponentsLegalMoves);
 }

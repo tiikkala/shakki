@@ -17,8 +17,7 @@ import javalabra.shakki.engine.board.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *
- * @author tapio
+ *Shakin kuningas.
  */
 public class King extends Piece {
 
@@ -30,7 +29,6 @@ public class King extends Piece {
 
     @Override
     public Collection<Move> calculateLegalMoves(Board board) {
-
         final List<Move> legalMoves = new ArrayList<>();
         for (int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
             final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;

@@ -19,8 +19,7 @@ import javalabra.shakki.engine.pieces.PieceColor;
 import javalabra.shakki.engine.pieces.Rook;
 
 /**
- *
- * @author tapio
+ *Musta pelaaja.
  */
 public class BlackPlayer extends Player {
 

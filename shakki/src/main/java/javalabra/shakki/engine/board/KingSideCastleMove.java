@@ -9,8 +9,7 @@ import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.Rook;
 
 /**
- *
- * @author tapio
+ *Tornitussiirto kuninkaan puolelta.
  */
 public class KingSideCastleMove extends CastleMove {
 

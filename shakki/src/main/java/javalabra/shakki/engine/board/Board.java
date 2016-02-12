@@ -25,8 +25,7 @@ import javalabra.shakki.engine.player.Player;
 import javalabra.shakki.engine.player.WhitePlayer;
 
 /**
- *
- * @author tapio
+ * Pelilauta-olio, joka kuvaa pelitilannetta.
  */
 public class Board {
 
@@ -52,7 +51,7 @@ public class Board {
     public Tile getTile(final int tileCoordinate) {
         return gameBoard.get(tileCoordinate);
     }
-    
+
     public Player currentPlayer() {
         return this.currentPlayer;
     }
@@ -115,7 +114,12 @@ public class Board {
         }
         return ImmutableList.copyOf(tiles);
     }
-
+    
+    /**
+     * Metodi luo alkutilannetta vastaavan pelitilanteen.
+     *
+     * @return shakin alkutilanne
+     */
     public static Board createStandardBoard() {
         final Builder builder = new Builder();
         // black layout
@@ -146,11 +150,23 @@ public class Board {
         builder.setMoveMaker(PieceColor.WHITE);
         return builder.build();
     }
-    
+
+    /**
+     * Metodi palauttaa kaikki mahdolliset pelilaudalla tehtävät siirrot (sekä
+     * mustan että valkoisen pelaajan siirrot).
+     *
+     * @return kokoelma sallittuja siirtoja
+     */
     public Iterable<Move> getAllLegalMoves() {
         return Iterables.unmodifiableIterable(Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
     }
 
+    /**
+     * Builder-luokka, jonka avulla pelilaudat luodaan. boardCongig-hajautustaussa on
+     * avaimena pelilaudan ruudun koordinaattori ja arvona ruudussa oleva nappula.
+     * Jos ruudussa ei ole nappulaa arvo on null. Builder sisältää myös tiedon siitä,
+     * kenen vuoro on.
+     */
     public static class Builder {
 
         private final Map<Integer, Piece> boardConfig;
@@ -159,17 +175,31 @@ public class Board {
         public Builder() {
             this.boardConfig = new HashMap();
         }
-
+        
+        /**
+         * Metodi asettaa nappulan oikealla paikkaaleen boardCongi-hajautustauluun.
+         * @param piece asetettava nappuli
+         * @return Builder-olio palauttaa itsensä päivitetyllä hajautustaululla varustettuna
+         */
         public Builder setPiece(final Piece piece) {
             this.boardConfig.put(piece.getPiecePosition(), piece);
             return this;
         }
 
+        /**
+         * Metodi määrittää, kene vuoro on seuraavaksi.
+         * @param nextMoveMaker seuraavaksi vuorossa oleva pelaaja
+         * @return Builder-olio palauttaa itsensä päivitetyllä nextMoveMaker-arvolla varustettuna
+         */
         public Builder setMoveMaker(final PieceColor nextMoveMaker) {
             this.nextMoveMaker = nextMoveMaker;
             return this;
         }
-        
+
+        /**
+         * Metodi luo Builder-oliota vastaavan pelilaudan.
+         * @return pelilauta
+         */
         public Board build() {
             return new Board(this);
         }

@@ -6,8 +6,9 @@
 package javalabra.shakki.engine.player;
 
 /**
- *
- * @author tapio
+ * Enum-apuluokka siirtojen seurauksien tutkimiseksi.
+ * Kun isDone() palauttaa true, siirron voi tehdä ilman, että
+ * siirtoa tekevän kuningas jäisi uhatuksi.
  */
 public enum MoveStatus {
 

@@ -32,6 +32,13 @@ public abstract class Piece {
         this.cachedHashCode = computeHashCode();
     }
 
+    /**
+     * Metodi määrittää, mihin nappula voi liikkua pelilaudalla. Metodin palauttamassa
+     * listassa on mukana myös siirtoja, jotka ovat pelin sääntöjen vastaisia, koska
+     * ne jättävät pelaajan kuninkaan uhatuksi.
+     * @param board pelilauta
+     * @return lista siirroista, jotka nappula voi tehdä
+     */
     public abstract Collection<Move> calculateLegalMoves(final Board board);
 
     @Override
@@ -54,7 +61,12 @@ public abstract class Piece {
     public PieceType getPieceType() {
         return this.pieceType;
     }
-
+/**
+ * Metodi palauttaa nappulan, jonka sijainti pelilaudalla on päivitetty
+ * vastaamaan nappulan sijaintia siirron jälkeen. 
+ * @param move siirto, joka tehdään
+ * @return siirretty nappula
+ */    
     public abstract Piece movePiece(final Move move);
 
     @Override

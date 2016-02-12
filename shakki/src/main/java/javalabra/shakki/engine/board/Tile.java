@@ -10,8 +10,7 @@ import java.util.Map;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ *Pelilaudan ruutu.
  */
 public abstract class Tile {
 
@@ -30,6 +29,13 @@ public abstract class Tile {
         this.tileCoordinate = tileCoordinate;
     }
     
+    /**
+     * Metodi luo pelilaudan ruudun. 
+     * @param tileCoordinate ruudun koordinaattori
+     * @param piece ruutuun tuleva nappula
+     * @return Jos piece-parametrin on null, palauttaa EmptyTile-olion;
+     * muuten OccupiedTile-olion, jolle annetaan piece parametrina.
+     */
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
         return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
     }

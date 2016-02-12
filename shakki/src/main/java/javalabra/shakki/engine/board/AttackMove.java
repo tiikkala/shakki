@@ -8,8 +8,8 @@ package javalabra.shakki.engine.board;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *
- * @author tapio
+ * Shakin "syöntisiirto", jossa nappula siirretään vastustajan nappulan asuttamaan ruutuun
+ * ja vastustajan nappula poistetaan pelistä.
  */
 public class AttackMove extends Move {
 
@@ -45,7 +45,7 @@ public class AttackMove extends Move {
     }
 
     @Override
-    public boolean isCastlingMove() {
+    public boolean isCastleMove() {
         return false;
     }
 
