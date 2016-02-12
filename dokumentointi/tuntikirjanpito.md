@@ -34,10 +34,9 @@
 
 **Pe 12.2.2015**
 * Testien kirjoittamista 4h
-* Käyttöliittymän suunnittelu & aloitus 4h
+* Javadocin kirjoittaminen 1,5h
 
 **TODO**
-* Testit seuraaville luokille: Player, Move, Board
 * Pawn-nappulan erikoissiirrot ja niiden testaus
 * Tornitussiirrot ja niiden testaus
 * Käyttöliittymä
