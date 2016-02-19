@@ -5,16 +5,8 @@
  */
 package javalabra.shakki;
 
-import java.util.Collection;
 import javalabra.shakki.GUI.Table;
 import javalabra.shakki.engine.board.Board;
-import javalabra.shakki.engine.move.Move;
-import javalabra.shakki.engine.pieces.Bishop;
-import javalabra.shakki.engine.pieces.King;
-import javalabra.shakki.engine.pieces.Pawn;
-import javalabra.shakki.engine.pieces.PieceColor;
-import javalabra.shakki.engine.pieces.Queen;
-import javalabra.shakki.engine.pieces.Rook;
 
 /**
  *
