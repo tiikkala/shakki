@@ -3,32 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.player;
+package javalabra.shakki.engine.move;
 
 /**
- * Enum-apuluokka siirtojen seurauksien tutkimiseksi.
- * Kun isDone() palauttaa true, siirron voi tehdä ilman, että
- * siirtoa tekevän kuningas jäisi uhatuksi.
+ * Enum-apuluokka siirtojen seurauksien tutkimiseksi. Kun isDone() palauttaa
+ * true, siirron voi tehdä ilman, että siirtoa tekevän kuningas jäisi uhatuksi.
  */
 public enum MoveStatus {
 
     DONE {
                 @Override
-                boolean isDone() {
+                public boolean isDone() {
                     return true;
                 }
             },
     ILLEGAL {
                 @Override
-                boolean isDone() {
+                public boolean isDone() {
                     return false;
                 }
             },
     LEAVES_PLAYER_IN_CHECK {
                 @Override
-                boolean isDone() {
+                public boolean isDone() {
                     return false;
                 }
             };
-    abstract boolean isDone();
+
+    public abstract boolean isDone();
 }

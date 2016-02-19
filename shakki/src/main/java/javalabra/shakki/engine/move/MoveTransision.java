@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.player;
+package javalabra.shakki.engine.move;
 
 import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.move.Move;

@@ -5,6 +5,8 @@
  */
 package javalabra.shakki.engine.player;
 
+import javalabra.shakki.engine.move.MoveTransision;
+import javalabra.shakki.engine.move.MoveStatus;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;

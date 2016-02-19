@@ -17,7 +17,7 @@ import javalabra.shakki.engine.move.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *Shakin kuningas.
+ * Shakin kuningas.
  */
 public class King extends Piece {
 
@@ -33,7 +33,9 @@ public class King extends Piece {
         for (int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
             final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
             if (isFirstColumnExclusion(this.piecePosition, candidateDestinationCoordinate)
-                    || isEightColumnExclusion(this.piecePosition, candidateDestinationCoordinate));
+                    || isEightColumnExclusion(this.piecePosition, candidateDestinationCoordinate)) {
+                continue;
+            }
             if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                 if (!candidateDestinationTile.isTileOccupied()) {
