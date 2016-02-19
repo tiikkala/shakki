@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.board;
-import static javalabra.shakki.engine.board.Move.NULL_MOVE;
+package javalabra.shakki.engine.move;
+import javalabra.shakki.engine.board.Board;
+import static javalabra.shakki.engine.move.Move.NULL_MOVE;
 
 /**
  *Factory-luokka Move-olioiden luomiseksi.

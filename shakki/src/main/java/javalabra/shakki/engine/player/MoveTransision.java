@@ -6,7 +6,7 @@
 package javalabra.shakki.engine.player;
 
 import javalabra.shakki.engine.board.Board;
-import javalabra.shakki.engine.board.Move;
+import javalabra.shakki.engine.move.Move;
 
 /**
  *Luokan avulla voidaan varmistua siitä, että tehty siirto

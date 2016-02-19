@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javalabra.shakki.engine.board.Board;
-import javalabra.shakki.engine.board.Move;
+import javalabra.shakki.engine.move.Move;
 import javalabra.shakki.engine.pieces.King;
 import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.PieceColor;

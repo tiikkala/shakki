@@ -36,7 +36,15 @@
 * Testien kirjoittamista 4h
 * Javadocin kirjoittaminen 1,5h
 
+**To 18.2.2015**
+* Käyttöliittymän koodausta 3h
+
+**Pe 19.2.2015**
+* Käyttöliittymän koodausta 5h
+* Checkstyle-raporttiin reagointi 1h
+* Sekvenssikaavioiden laadinta 1,5h
+
 **TODO**
 * Pawn-nappulan erikoissiirrot ja niiden testaus
 * Tornitussiirrot ja niiden testaus
-* Käyttöliittymä
+* Käännä laudan rivien numerointi toisin päin BoardUtilisissa (ja koko ohjelmassa)

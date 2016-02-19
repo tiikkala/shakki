@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.board;
+package javalabra.shakki.engine.move;
 
+import javalabra.shakki.engine.board.Board;
+import javalabra.shakki.engine.move.AttackMove;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**

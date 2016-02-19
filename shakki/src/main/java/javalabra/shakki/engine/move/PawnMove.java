@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.board;
+package javalabra.shakki.engine.move;
 
+import javalabra.shakki.engine.board.Board;
+import javalabra.shakki.engine.move.Move;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- * Siirto, joka ei ole koskaan toteutettavissa.
+ *Bastrakti aliluokka sotilaan erilaisille siirroille.
  */
-public class NullMove extends Move {
+public abstract class PawnMove extends Move {
 
-    public NullMove() {
-        super(null, null, -1);
-    }
-
-    public Board ecexute() {
-        throw new RuntimeException("Cannot execute the null move!");
+    public PawnMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+        super(board, movedPiece, destinationCoordinate);
     }
 
     @Override

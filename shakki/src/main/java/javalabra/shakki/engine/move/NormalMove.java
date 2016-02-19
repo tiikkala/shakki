@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.board;
+package javalabra.shakki.engine.move;
 
+import javalabra.shakki.engine.board.Board;
+import javalabra.shakki.engine.move.Move;
+import javalabra.shakki.engine.board.Board.Builder;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *Bastrakti aliluokka sotilaan erilaisille siirroille.
+ *Normaali siirto, jossa pelinappula siirretään tyhjään ruutuun.
  */
-public abstract class PawnMove extends Move {
+public class NormalMove extends Move {
 
-    public PawnMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+    public NormalMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
         super(board, movedPiece, destinationCoordinate);
     }
 

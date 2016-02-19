@@ -5,6 +5,7 @@
  */
 package javalabra.shakki.engine.board;
 
+import javalabra.shakki.engine.move.Move;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;

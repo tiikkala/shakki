@@ -7,7 +7,7 @@ package javalabra.shakki.engine.pieces;
 
 import java.util.Collection;
 import javalabra.shakki.engine.board.Board;
-import javalabra.shakki.engine.board.Move;
+import javalabra.shakki.engine.move.Move;
 
 /**
  *

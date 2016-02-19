@@ -9,11 +9,11 @@ import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import javalabra.shakki.engine.board.AttackMove;
+import javalabra.shakki.engine.move.AttackMove;
 import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.board.BoardUtils;
-import javalabra.shakki.engine.board.Move;
-import javalabra.shakki.engine.board.NormalMove;
+import javalabra.shakki.engine.move.Move;
+import javalabra.shakki.engine.move.NormalMove;
 
 /**
  *Shakin sotilas.

@@ -3,18 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.engine.board;
+package javalabra.shakki.engine.move;
 
-import javalabra.shakki.engine.board.Board.Builder;
+import javalabra.shakki.engine.board.Board;
+import javalabra.shakki.engine.move.Move;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *Normaali siirto, jossa pelinappula siirretään tyhjään ruutuun.
+ * Siirto, joka ei ole koskaan toteutettavissa.
  */
-public class NormalMove extends Move {
+public class NullMove extends Move {
 
-    public NormalMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
-        super(board, movedPiece, destinationCoordinate);
+    public NullMove() {
+        super(null, null, -1);
+    }
+
+    public Board ecexute() {
+        throw new RuntimeException("Cannot execute the null move!");
     }
 
     @Override
