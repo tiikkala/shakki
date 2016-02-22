@@ -40,7 +40,7 @@ public class Table {
     private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
-    private final static String pieceIconPath = "main/resources/art";
+    private final static String pieceIconPath = "src/main/resources/art/";
 
     public Table() {
         this.gameFrame = new JFrame("JChess");
@@ -116,8 +116,8 @@ public class Table {
             this.removeAll();
             if (board.getTile(this.tileCoordinate).isTileOccupied()) {
                 try {
-                    final BufferedImage image = ImageIO.read(new File(pieceIconPath + board.getTile(this.tileCoordinate).getPiece().getPieceColor().toString().substring(0, 1)
-                            + board.getTile(this.tileCoordinate).getPiece().toString() + ".png"));
+                    final BufferedImage image = ImageIO.read(new File(pieceIconPath + board.getTile(this.tileCoordinate).getPiece().getPieceColor().toString().substring(0, 1) + "" +
+                            board.getTile(this.tileCoordinate).getPiece().toString() + ".png"));
                     add(new JLabel(new ImageIcon(image)));
                 } catch (IOException ex) {
                     Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
