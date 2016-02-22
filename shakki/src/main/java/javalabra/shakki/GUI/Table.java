@@ -118,6 +118,7 @@ public class Table {
                 try {
                     final BufferedImage image = ImageIO.read(new File(pieceIconPath + board.getTile(this.tileCoordinate).getPiece().getPieceColor().toString().substring(0, 1)
                             + board.getTile(this.tileCoordinate).getPiece().toString() + ".png"));
+                    add(new JLabel(new ImageIcon(image)));
                 } catch (IOException ex) {
                     Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
                 }
