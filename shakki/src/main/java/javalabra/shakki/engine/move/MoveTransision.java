@@ -9,9 +9,9 @@ import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.move.Move;
 
 /**
- *Luokan avulla voidaan varmistua siitä, että tehty siirto
- * ei aiheuta tilannetta, jossa siirron tehneen pelaajan kuningas
- * jää uhatuksi. Tällainen siirto on vastoin pelin sääntöjä.
+ * Luokan avulla voidaan varmistua siitä, että tehty siirto ei aiheuta
+ * tilannetta, jossa siirron tehneen pelaajan kuningas jää uhatuksi. Tällainen
+ * siirto on vastoin pelin sääntöjä.
  */
 public class MoveTransision {
 
@@ -32,6 +32,10 @@ public class MoveTransision {
      */
     public MoveStatus getMoveStatus() {
         return this.moveStatus;
+    }
+
+    public Board getTransisionBoard() {
+        return this.transisionBoard;
     }
 
 }
