@@ -13,3 +13,5 @@
 ![Määrittelyvaiheen luokkakaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/shakki-UML.png)
 
 ![Sekvenssikaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/ohjelmanKäynnistysAloituspelialaudanLuonti.png)
+
+![Sekvenssikaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/valkoinenPelaajaTekeeSiirron.png)
