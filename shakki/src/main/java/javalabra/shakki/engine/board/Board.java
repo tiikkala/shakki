@@ -108,6 +108,11 @@ public class Board {
         return ImmutableList.copyOf(activePieces);
     }
 
+    /**
+     * Metodi luo Builder-olion tilaa vastaavan listan pelilaudan ruuduista.
+     * @param builder pelinappuloinden paikata tallennettuna builder-olioon
+     * @return palauttaa pelilaudan ruudut listana
+     */
     private static List<Tile> createGameBoard(final Builder builder) {
         final Tile[] tiles = new Tile[BoardUtils.NUM_TILES];
         for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
@@ -178,7 +183,7 @@ public class Board {
         }
         
         /**
-         * Metodi asettaa nappulan oikealla paikkaaleen boardCongi-hajautustauluun.
+         * Metodi asettaa nappulan oikealla paikkaaleen boardConfig-hajautustauluun.
          * @param piece asetettava nappuli
          * @return Builder-olio palauttaa itsensä päivitetyllä hajautustaululla varustettuna
          */

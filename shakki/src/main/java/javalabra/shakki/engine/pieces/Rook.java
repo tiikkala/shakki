@@ -17,14 +17,18 @@ import javalabra.shakki.engine.move.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *Shakin torni.
+ * Shakin torni.
  */
 public class Rook extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
     public Rook(final int piecePosition, final PieceColor pieceColor) {
-        super(PieceType.ROOK, piecePosition, pieceColor);
+        super(PieceType.ROOK, piecePosition, pieceColor, true);
+    }
+
+    public Rook(final int piecePosition, final PieceColor pieceColor, final boolean isFirstMove) {
+        super(PieceType.ROOK, piecePosition, pieceColor, isFirstMove);
     }
 
     @Override

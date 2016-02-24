@@ -16,14 +16,18 @@ import javalabra.shakki.engine.move.NormalMove;
 import javalabra.shakki.engine.board.Tile;
 
 /**
- *Shakin hevonen.
+ * Shakin hevonen.
  */
 public class Knight extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
     public Knight(final int piecePosition, final PieceColor color) {
-        super(PieceType.KNIGHT, piecePosition, color);
+        super(PieceType.KNIGHT, piecePosition, color, true);
+    }
+
+    public Knight(final int piecePosition, final PieceColor color, final boolean isFirstMove) {
+        super(PieceType.KNIGHT, piecePosition, color, isFirstMove);
     }
 
     public List<Move> calculateLegalMoves(final Board board) {

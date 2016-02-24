@@ -16,14 +16,20 @@ import javalabra.shakki.engine.move.Move;
 import javalabra.shakki.engine.move.NormalMove;
 
 /**
- *Shakin sotilas.
+ * Shakin sotilas.
  */
 public class Pawn extends Piece {
 
     private static final int[] CANDIDATE_MOVE_COORDINATES = {7, 8, 9, 16};
 
     public Pawn(final int piecePosition, final PieceColor pieceColor) {
-        super(PieceType.PAWN, piecePosition, pieceColor);
+        super(PieceType.PAWN, piecePosition, pieceColor, true);
+    }
+
+    public Pawn(final PieceColor pieceColor,
+            final int piecePosition,
+            final boolean isFirstMove) {
+        super(PieceType.PAWN, piecePosition, pieceColor, isFirstMove);
     }
 
     @Override

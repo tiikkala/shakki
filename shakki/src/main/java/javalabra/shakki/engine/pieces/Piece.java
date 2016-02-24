@@ -23,11 +23,11 @@ public abstract class Piece {
 
     protected Piece(final PieceType pieceType,
             final int piecePosition,
-            final PieceColor pieceColor) {
+            final PieceColor pieceColor,
+            final boolean isFirstMove) {
         this.pieceColor = pieceColor;
         this.piecePosition = piecePosition;
-        // more work here
-        this.isFirstMove = false;
+        this.isFirstMove = isFirstMove;
         this.pieceType = pieceType;
         this.cachedHashCode = computeHashCode();
     }

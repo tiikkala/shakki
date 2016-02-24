@@ -103,7 +103,9 @@ public abstract class Player {
 
     /**
      * Metodi palauttaa MoveTransision-olion, joka kertoo, voidaanko siirto tehdä ilman,
-     * että siirron tehneen pelaajan kuningas jää uhatuksi.
+     * että siirron tehneen pelaajan kuningas jää uhatuksi. Mikäli siirto voidaan tehdä,
+     * saadaan siirron jälkeisen pelilaudan tilaa koskevat tiedot MoveTransision-olion
+     * transisionBoard-attribuutista.
      * @param move siirto, jonka laillisuus halutaan tarkistaa
      * @return MoveTransision-olio, josta selviää siirron laillisuus
      */
