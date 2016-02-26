@@ -14,6 +14,7 @@ import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.board.BoardUtils;
 import javalabra.shakki.engine.move.Move;
 import javalabra.shakki.engine.move.NormalMove;
+import javalabra.shakki.engine.move.PawnJump;
 
 /**
  * Shakin sotilas.
@@ -66,6 +67,16 @@ public class Pawn extends Piece {
                     if (this.pieceColor != pieceOnCandidate.pieceColor) {
                         legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                     }
+                }
+            }
+                        else if (currentCandidateOffset == 16 && this.isFirstMove() &&
+                    ((BoardUtils.SECOND_ROW[this.piecePosition] && this.pieceColor.isBlack()) ||
+                     (BoardUtils.SEVENTH_ROW[this.piecePosition] && this.pieceColor.isWhite()))) {
+                final int behindCandidateDestinationCoordinate =
+                        this.piecePosition + (this.pieceColor.getDirection() * 8);
+                if (!board.getTile(candidateDestinationCoordinate).isTileOccupied() &&
+                    !board.getTile(behindCandidateDestinationCoordinate).isTileOccupied()) {
+                    legalMoves.add(new PawnJump(board, this, candidateDestinationCoordinate));
                 }
             }
         }
