@@ -31,11 +31,11 @@ public class KnightTest {
     public void setUp() {
         boardBuilder = new Builder();
         // Black Layout
-        boardBuilder.setPiece(new King(4, PieceColor.BLACK));
+        boardBuilder.setPiece(new King(4, PieceColor.BLACK, true, true));
         boardBuilder.setPiece(new Knight(21, PieceColor.BLACK));
         // White Layout
         boardBuilder.setPiece(new Knight(36, PieceColor.WHITE));
-        boardBuilder.setPiece(new King(60, PieceColor.WHITE));
+        boardBuilder.setPiece(new King(60, PieceColor.WHITE, true, true));
         boardBuilder.setMoveMaker(PieceColor.WHITE);
         board = boardBuilder.build();
     }

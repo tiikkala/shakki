@@ -37,9 +37,11 @@ public class Board {
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
     private final Player currentPlayer;
-    
+
     final Collection<Move> whiteStandardLegalMoves;
     final Collection<Move> blackStandardLegalMoves;
+
+    private final Pawn enPassantPawn;
 
     private Board(final Builder builder) {
         this.gameBoard = createGameBoard(builder);
@@ -50,6 +52,7 @@ public class Board {
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, blackStandardLegalMoves, whiteStandardLegalMoves);
         this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
+        this.enPassantPawn = builder.enPassantPawn;
     }
 
     public Tile getTile(final int tileCoordinate) {
@@ -72,6 +75,10 @@ public class Board {
         }
         return builder.toString();
     }
+    
+      public Pawn getEnPassantPawn() {
+        return this.enPassantPawn;
+    }
 
     public Collection<Piece> getBlackPieces() {
         return this.blackPieces;
@@ -79,6 +86,10 @@ public class Board {
 
     public Collection<Piece> getWhitePieces() {
         return this.whitePieces;
+    }
+
+    public Iterable<Piece> getAllPieces() {
+        return Iterables.unmodifiableIterable(Iterables.concat(this.whitePieces, this.blackPieces));
     }
 
     public Player getWhitePlayer() {
@@ -113,6 +124,7 @@ public class Board {
 
     /**
      * Metodi luo Builder-olion tilaa vastaavan listan pelilaudan ruuduista.
+     *
      * @param builder pelinappuloinden paikata tallennettuna builder-olioon
      * @return palauttaa pelilaudan ruudut listana
      */
@@ -123,7 +135,7 @@ public class Board {
         }
         return ImmutableList.copyOf(tiles);
     }
-    
+
     /**
      * Metodi luo alkutilannetta vastaavan pelitilanteen.
      *
@@ -136,7 +148,7 @@ public class Board {
         builder.setPiece(new Knight(1, PieceColor.BLACK));
         builder.setPiece(new Bishop(2, PieceColor.BLACK));
         builder.setPiece(new Queen(3, PieceColor.BLACK));
-        builder.setPiece(new King(4, PieceColor.BLACK));
+        builder.setPiece(new King(4, PieceColor.BLACK, true, true));
         builder.setPiece(new Bishop(5, PieceColor.BLACK));
         builder.setPiece(new Knight(6, PieceColor.BLACK));
         builder.setPiece(new Rook(7, PieceColor.BLACK));
@@ -151,7 +163,7 @@ public class Board {
         builder.setPiece(new Knight(57, PieceColor.WHITE));
         builder.setPiece(new Bishop(58, PieceColor.WHITE));
         builder.setPiece(new Queen(59, PieceColor.WHITE));
-        builder.setPiece(new King(60, PieceColor.WHITE));
+        builder.setPiece(new King(60, PieceColor.WHITE, true, true));
         builder.setPiece(new Bishop(61, PieceColor.WHITE));
         builder.setPiece(new Knight(62, PieceColor.WHITE));
         builder.setPiece(new Rook(63, PieceColor.WHITE));
@@ -171,24 +183,28 @@ public class Board {
     }
 
     /**
-     * Builder-luokka, jonka avulla pelilaudat luodaan. boardCongig-hajautustaussa on
-     * avaimena pelilaudan ruudun koordinaattori ja arvona ruudussa oleva nappula.
-     * Jos ruudussa ei ole nappulaa arvo on null. Builder sisältää myös tiedon siitä,
-     * kenen vuoro on.
+     * Builder-luokka, jonka avulla pelilaudat luodaan.
+     * boardCongig-hajautustaussa on avaimena pelilaudan ruudun koordinaattori
+     * ja arvona ruudussa oleva nappula. Jos ruudussa ei ole nappulaa arvo on
+     * null. Builder sisältää myös tiedon siitä, kenen vuoro on.
      */
     public static class Builder {
 
         private final Map<Integer, Piece> boardConfig;
         PieceColor nextMoveMaker;
+        Pawn enPassantPawn;
 
         public Builder() {
             this.boardConfig = new HashMap();
         }
-        
+
         /**
-         * Metodi asettaa nappulan oikealla paikkaaleen boardConfig-hajautustauluun.
+         * Metodi asettaa nappulan oikealla paikkaaleen
+         * boardConfig-hajautustauluun.
+         *
          * @param piece asetettava nappuli
-         * @return Builder-olio palauttaa itsensä päivitetyllä hajautustaululla varustettuna
+         * @return Builder-olio palauttaa itsensä päivitetyllä hajautustaululla
+         * varustettuna
          */
         public Builder setPiece(final Piece piece) {
             this.boardConfig.put(piece.getPiecePosition(), piece);
@@ -197,8 +213,10 @@ public class Board {
 
         /**
          * Metodi määrittää, kene vuoro on seuraavaksi.
+         *
          * @param nextMoveMaker seuraavaksi vuorossa oleva pelaaja
-         * @return Builder-olio palauttaa itsensä päivitetyllä nextMoveMaker-arvolla varustettuna
+         * @return Builder-olio palauttaa itsensä päivitetyllä
+         * nextMoveMaker-arvolla varustettuna
          */
         public Builder setMoveMaker(final PieceColor nextMoveMaker) {
             this.nextMoveMaker = nextMoveMaker;
@@ -207,10 +225,16 @@ public class Board {
 
         /**
          * Metodi luo Builder-oliota vastaavan pelilaudan.
+         *
          * @return pelilauta
          */
         public Board build() {
             return new Board(this);
+        }
+
+        public Builder setEnPassantPawn(final Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
+            return this;
         }
 
     }

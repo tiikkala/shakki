@@ -47,7 +47,7 @@ public class AttackMove extends Move {
     }
 
     @Override
-    public boolean isCastleMove() {
+    public boolean isCastlingMove() {
         return false;
     }
 

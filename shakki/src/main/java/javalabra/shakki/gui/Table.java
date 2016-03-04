@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javalabra.shakki.GUI;
+package javalabra.shakki.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,8 +13,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import static java.awt.event.MouseEvent.BUTTON1;
-import static java.awt.event.MouseEvent.BUTTON2;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,8 +30,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- *
- * @author tapio
+ * Graafinen käyttöliittymä.
  */
 public class Table {
 
@@ -43,6 +40,7 @@ public class Table {
     private Tile sourceTile;
     private Tile destinationTile;
     private Piece humanMovedPiece;
+    private final MessagePanel messagePanel;
 
     private final Color lightTileColor = Color.CYAN;
     private final Color darkTileColor = Color.LIGHT_GRAY;
@@ -60,8 +58,11 @@ public class Table {
         this.gameFrame.setLayout(new BorderLayout());
         this.gameFrame.setJMenuBar(tableMenuBar);
         this.boardPanel = new BoardPanel();
+        this.messagePanel = new MessagePanel();
+        this.gameFrame.add(this.messagePanel, BorderLayout.SOUTH);
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.setVisible(true);
+        this.gameFrame.setLocationRelativeTo(null);
     }
 
     private JMenuBar createTableMenubar() {
@@ -72,15 +73,27 @@ public class Table {
 
     private JMenu createFileMenu() {
         final JMenu fileMenu = new JMenu("File");
-        final JMenuItem openPGN = new JMenuItem("Load PGN File");
-        openPGN.addActionListener(new ActionListener() {
+        final JMenuItem newGameMenuItem = new JMenuItem("New Game");
+        final JMenuItem exitMenuItem = new JMenuItem("Exit");
+// load/save png file-ominaisuus ei ehtinyt vielä tähän versioon, tulossa
+// seuraavaan
+//        final JMenuItem openPGN = new JMenuItem("Load PGN File");
+        newGameMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Open up the pgn file!");
+                messagePanel.clear();
+                chessBoard = Board.createStandardBoard();
+                boardPanel.drawBoard(chessBoard);
             }
         });
-        fileMenu.add(openPGN);
-        final JMenuItem exitMenuItem = new JMenuItem("Exit");
+        fileMenu.add(newGameMenuItem);
+//        openPGN.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("Open up the pgn file!");
+//            }
+//        });
+//        fileMenu.add(openPGN);
         exitMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -90,7 +103,10 @@ public class Table {
         fileMenu.add(exitMenuItem);
         return fileMenu;
     }
-
+    
+    /**
+     * Pelilauta, koostuu 8x8 ruudukosta.
+     */
     private class BoardPanel extends JPanel {
 
         final List<TilePanel> boardTiles;
@@ -118,6 +134,10 @@ public class Table {
         }
     }
 
+    /**
+     * TilePanel-oliot edustava shakin ruutuja. Nappuloita liikutetaan klikkaamalla
+     * hiirellä ruutuja, joissa ne sijaitsevat.
+     */
     private class TilePanel extends JPanel {
 
         private final int tileCoordinate;
@@ -135,12 +155,12 @@ public class Table {
                 @Override
                 public void mouseClicked(final MouseEvent e) {
                     if (SwingUtilities.isRightMouseButton(e)) {
-                        //firts click
+                        // klikkaus hiiren oikealla napilla
                         sourceTile = null;
                         destinationTile = null;
                         humanMovedPiece = null;
                     } else if (SwingUtilities.isLeftMouseButton(e)) {
-                        //second cilck
+                        // ensimmäinen klikkaus hiiren vasemmalla napilla
                         if (sourceTile == null) {
                             sourceTile = chessBoard.getTile(tileCoordinate);
                             humanMovedPiece = sourceTile.getPiece();
@@ -148,45 +168,69 @@ public class Table {
                                 sourceTile = null;
                             }
                         } else {
+                            // toinen klikkaus hiiren vasemmalla napilla
                             destinationTile = chessBoard.getTile(tileCoordinate);
                             final Move move = MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(), destinationTile.getTileCoordinate());
                             final MoveTransision transision = chessBoard.currentPlayer().makeMove(move);
                             if (transision.getMoveStatus().isDone()) {
                                 chessBoard = transision.getTransisionBoard();
-                                //TODO: add the move tha was made to the move log
+                                SwingUtilities.invokeLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        boardPanel.drawBoard(chessBoard);
+                                    }
+                                });
                             }
                             sourceTile = null;
                             destinationTile = null;
                             humanMovedPiece = null;
-                        }
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                boardPanel.drawBoard(chessBoard);
+                            // tarkastetaan, onko jompi kumpi voittanut 
+                            // tai onko kyseessä tasapeli
+                            if (chessBoard.getWhitePlayer().isInCheckMate()) {
+                                messagePanel.writeBlackPlayerWins();
                             }
-                        });
+                            if (chessBoard.getBlackPlayer().isInCheckMate()) {
+                                messagePanel.writeWhitePlayerWins();
+                            }
+                            if (chessBoard.getBlackPlayer().isStaleMate()) {
+                                messagePanel.writeBlackPlayerStaleMate();
+                            }
+                            if (chessBoard.getWhitePlayer().isStaleMate()) {
+                                messagePanel.writeWhitePlayerStaleMate();
+                            }
+                        }
                     }
                 }
 
                 @Override
-                public void mousePressed(MouseEvent e) {
+                public void mousePressed(MouseEvent e
+                ) {
                 }
 
                 @Override
-                public void mouseReleased(MouseEvent e) {
+                public void mouseReleased(MouseEvent e
+                ) {
                 }
 
                 @Override
-                public void mouseEntered(MouseEvent e) {
+                public void mouseEntered(MouseEvent e
+                ) {
                 }
 
                 @Override
-                public void mouseExited(MouseEvent e) {
+                public void mouseExited(MouseEvent e
+                ) {
                 }
-            });
+            }
+            );
             validate();
         }
 
+        /**
+         * Metodi hakee ruutua vastaavan nappulan kuvan.
+         *
+         * @param board saa parametrina pelilaudan
+         */
         private void assignPieceIcon(final Board board) {
             this.removeAll();
             if (board.getTile(this.tileCoordinate).isTileOccupied()) {
@@ -202,6 +246,9 @@ public class Table {
             }
         }
 
+        /**
+         * Metodi värittää shakkilaudan ruudut.
+         */
         private void assignTileColor() {
             if (BoardUtils.FIRST_ROW[this.tileCoordinate]
                     || BoardUtils.THIRD_ROW[this.tileCoordinate]
@@ -216,6 +263,12 @@ public class Table {
             }
         }
 
+        /**
+         * Metodi piirtää ruutuun nappulan, jos siinä on sellainen.
+         *
+         * @param board saa parametrina Board-olion, josta selviää, missä
+         * ruuduissa on nappula
+         */
         public void drawTile(final Board board) {
             assignTileColor();
             assignPieceIcon(board);

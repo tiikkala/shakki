@@ -7,26 +7,25 @@ package javalabra.shakki.engine.move;
 
 import javalabra.shakki.engine.board.Board;
 import javalabra.shakki.engine.board.Board.Builder;
-import javalabra.shakki.engine.move.Move;
-import javalabra.shakki.engine.pieces.Pawn;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- * Sotilaan erikoissiirto, jossa se siirtyy yhden ruudun sijaan kaksi ruutua
- * eteenpäin.
+ * Sotilaan en passant -niminen erikoissiirto.
  */
-public class PawnJump extends Move {
+public class PawnEnPassantAttack extends PawnAttackMove {
 
-    public PawnJump(Board board, Piece movedPiece, int destinationCoordinate) {
-        super(board, movedPiece, destinationCoordinate);
+    public PawnEnPassantAttack(final Board board,
+            final Piece pieceMoved,
+            final int destinationCoordinate,
+            final Piece pieceAttacked) {
+        super(board, pieceMoved, destinationCoordinate, pieceAttacked);
     }
 
     @Override
     public boolean equals(final Object other) {
-        return this == other || other instanceof PawnJump && super.equals(other);
+        return this == other || other instanceof PawnEnPassantAttack && super.equals(other);
     }
 
-    @Override
     public Board execute() {
         final Board.Builder builder = new Builder();
         for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
@@ -35,28 +34,12 @@ public class PawnJump extends Move {
             }
         }
         for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-            builder.setPiece(piece);
+            if (!piece.equals(this.getAttackedPiece())) {
+                builder.setPiece(piece);
+            }
         }
-        final Pawn movedPawn = (Pawn) this.movedPiece.movePiece(this);
-        builder.setPiece(movedPawn);
- //       builder.setEnPassantPawn(movedPawn);
+        builder.setPiece(this.movedPiece.movePiece(this));
         builder.setMoveMaker(this.board.currentPlayer().getOpponent().getPieceColor());
         return builder.build();
     }
-
-    @Override
-    public boolean isAttack() {
-        return false;
-    }
-
-    @Override
-    public boolean isCastlingMove() {
-        return false;
-    }
-
-    @Override
-    public Piece getAttackedPiece() {
-        return null;
-    }
-
 }

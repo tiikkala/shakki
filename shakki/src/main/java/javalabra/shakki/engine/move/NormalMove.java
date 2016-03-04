@@ -11,7 +11,7 @@ import javalabra.shakki.engine.board.Board.Builder;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *Normaali siirto, jossa pelinappula siirretään tyhjään ruutuun.
+ * Normaali siirto, jossa pelinappula siirretään tyhjään ruutuun.
  */
 public class NormalMove extends Move {
 
@@ -20,12 +20,12 @@ public class NormalMove extends Move {
     }
 
     @Override
-    public boolean isAttack() {
-        return false;
+    public boolean equals(final Object other) {
+        return this == other || other instanceof NormalMove && super.equals(other);
     }
 
     @Override
-    public boolean isCastleMove() {
+    public boolean isAttack() {
         return false;
     }
 

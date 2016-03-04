@@ -10,20 +10,32 @@ import javalabra.shakki.engine.board.Board.Builder;
 import javalabra.shakki.engine.pieces.Piece;
 
 /**
- *Siirto-luokka, joka tarjoaa metodin siirron toteuttamiseen.
+ * Siirto-luokka, joka tarjoaa metodin siirron toteuttamiseen.
  */
 public abstract class Move {
 
-    final Board board;
-    final Piece movedPiece;
-    final int destinationCoordinate;
+    protected final Board board;
+    protected final Piece movedPiece;
+    protected final int destinationCoordinate;
+    protected final boolean isFirstMove;
 
     public static final Move NULL_MOVE = new NullMove();
 
-    protected Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+    public Move(final Board board,
+            final Piece pieceMoved,
+            final int destinationCoordinate) {
         this.board = board;
-        this.movedPiece = movedPiece;
         this.destinationCoordinate = destinationCoordinate;
+        this.movedPiece = pieceMoved;
+        this.isFirstMove = pieceMoved.isFirstMove();
+    }
+
+    public Move(final Board board,
+            final int destinationCoordinate) {
+        this.board = board;
+        this.destinationCoordinate = destinationCoordinate;
+        this.movedPiece = null;
+        this.isFirstMove = false;
     }
 
     @Override
@@ -57,19 +69,35 @@ public abstract class Move {
     public int getCurrentCoordinate() {
         return this.movedPiece.getPiecePosition();
     }
+    
+    public Board getBoard() {
+        return this.board;
+    }
 
+    /**
+     * Metodi kertoo, onko kyseessä hyökkäysiirto.
+     */
     public abstract boolean isAttack();
+
     /**
      * Metodi kertoo, onko kyseessä tornitussiirto.
      */
-    public abstract boolean isCastleMove();
+     public boolean isCastlingMove() {
+        return false;
+    }
+
+    /**
+     * Palauttaa nappulan, joka syödään hyökkäyssiirrossa
+     * @return Piece, syötävä nappula
+     */
     public abstract Piece getAttackedPiece();
 
     /**
-     * Metodi toteuttaa siirron luomalla uuden pelilaudan, jossa kyseinen siirto on tehty ja
-     * siirtovuoro siirretty seuraavalle pelaajalle.
-     * @return palauttaa pelilaudan
-     */  
+     * Metodi toteuttaa siirron luomalla uuden pelilaudan, jossa kyseinen siirto
+     * on tehty ja siirtovuoro siirretty seuraavalle pelaajalle.
+     *
+     * @return Board, pelilauta, jossa siirto on tehty
+     */
     public Board execute() {
         final Builder builder = new Board.Builder();
         for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
@@ -89,7 +117,7 @@ public abstract class Move {
     public Piece getMovedPiece() {
         return this.movedPiece;
     }
-    
+
     @Override
     public String toString() {
         return Integer.toString(this.destinationCoordinate);

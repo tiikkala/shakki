@@ -31,16 +31,16 @@ public class MoveTest {
     public void setUp() {
         Builder boardBuilder = new Board.Builder();
         // black layout
-        boardBuilder.setPiece(new King(4, PieceColor.BLACK));
+        boardBuilder.setPiece(new King(4, PieceColor.BLACK, false, false, false, false));
         // white layout
-        boardBuilder.setPiece(new King(61, PieceColor.WHITE));
+        boardBuilder.setPiece(new King(61, PieceColor.WHITE, false, false, false, false));
         boardBuilder.setMoveMaker(PieceColor.BLACK);
         boardAfterTheMove = boardBuilder.build();
         Builder testBoardBuilder = new Board.Builder();
         // Black Layout
-        testBoardBuilder.setPiece(new King(4, PieceColor.BLACK));
+        testBoardBuilder.setPiece(new King(4, PieceColor.BLACK, false, false, false, false));
         // White Layout
-        testBoardBuilder.setPiece(new King(60, PieceColor.WHITE));
+        testBoardBuilder.setPiece(new King(60, PieceColor.WHITE, false, false, false, false));
         testBoardBuilder.setMoveMaker(PieceColor.WHITE);
         testBoardTempalate = testBoardBuilder.build();
         move = new NormalMove(testBoardTempalate, testBoardTempalate.getTile(60).getPiece(), 61);

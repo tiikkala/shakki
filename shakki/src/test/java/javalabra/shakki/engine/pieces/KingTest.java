@@ -30,9 +30,9 @@ public class KingTest {
     public void setUp() {
         boardBuilder = new Board.Builder();
         // Black Layout
-        boardBuilder.setPiece(new King(4, PieceColor.BLACK));;
+        boardBuilder.setPiece(new King(4, PieceColor.BLACK, true, true));;
         // White Layout
-        boardBuilder.setPiece(new King(60, PieceColor.WHITE));
+        boardBuilder.setPiece(new King(60, PieceColor.WHITE, true, true));
         boardBuilder.setMoveMaker(PieceColor.BLACK);
         board = boardBuilder.build();
     }

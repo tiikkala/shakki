@@ -5,6 +5,7 @@
  */
 package javalabra.shakki.engine.pieces;
 
+import javalabra.shakki.engine.board.BoardUtils;
 import javalabra.shakki.engine.player.BlackPlayer;
 import javalabra.shakki.engine.player.Player;
 import javalabra.shakki.engine.player.WhitePlayer;
@@ -32,8 +33,18 @@ public enum PieceColor {
                 }
 
                 @Override
+                public boolean isPawnPromotionSquare(final int position) {
+                    return BoardUtils.FIRST_ROW[position];
+                }
+
+                @Override
                 public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
                     return whitePlayer;
+                }
+
+                @Override
+                public int getOppositeDirection() {
+                    return 1;
                 }
             },
     BLACK {
@@ -56,9 +67,23 @@ public enum PieceColor {
                 public Player choosePlayer(final WhitePlayer whitePlayer, final BlackPlayer blackPlayer) {
                     return blackPlayer;
                 }
+
+                @Override
+                public boolean isPawnPromotionSquare(final int position) {
+                    return BoardUtils.EIGHTH_ROW[position];
+                }
+
+                @Override
+                public int getOppositeDirection() {
+                    return -1;
+                }
             };
 
+    public abstract boolean isPawnPromotionSquare(int position);
+
     public abstract int getDirection();
+
+    public abstract int getOppositeDirection();
 
     public abstract boolean isWhite();
 

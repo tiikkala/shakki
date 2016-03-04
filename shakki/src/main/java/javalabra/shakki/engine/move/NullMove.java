@@ -15,7 +15,7 @@ import javalabra.shakki.engine.pieces.Piece;
 public class NullMove extends Move {
 
     public NullMove() {
-        super(null, null, -1);
+        super(null, -1);
     }
 
     public Board ecexute() {
@@ -23,17 +23,12 @@ public class NullMove extends Move {
     }
 
     @Override
-    public boolean isAttack() {
-        return false;
-    }
-
-    @Override
-    public boolean isCastleMove() {
-        return false;
-    }
-
-    @Override
     public Piece getAttackedPiece() {
         return null;
+    }
+
+    @Override
+    public boolean isAttack() {
+        return false;
     }
 }

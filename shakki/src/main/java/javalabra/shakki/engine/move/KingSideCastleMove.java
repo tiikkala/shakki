@@ -11,7 +11,7 @@ import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.Rook;
 
 /**
- *Tornitussiirto kuninkaan puolelta.
+ * Tornitussiirto kuninkaan puolelta.
  */
 public class KingSideCastleMove extends CastleMove {
 
@@ -24,10 +24,17 @@ public class KingSideCastleMove extends CastleMove {
         super(board, movedPiece, destinationCoordinate, castleRook,
                 castleRookStartCoordinate, castleRookDestinationCoordinate);
     }
-    
+
     @Override
-    // Siirron pgn-notaatio https://www.wikiwand.com/en/Portable_Game_Notation
-    public String toString() {
-        return "0-0";
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof KingSideCastleMove)) {
+            return false;
+        }
+        final KingSideCastleMove otherKingSideCastleMove = (KingSideCastleMove) other;
+        return super.equals(otherKingSideCastleMove) && this.castleRook.equals(otherKingSideCastleMove.getCastleRook());
+
     }
 }

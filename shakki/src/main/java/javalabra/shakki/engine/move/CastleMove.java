@@ -6,12 +6,13 @@
 package javalabra.shakki.engine.move;
 
 import javalabra.shakki.engine.board.Board;
+import javalabra.shakki.engine.board.Board.Builder;
 import javalabra.shakki.engine.move.Move;
 import javalabra.shakki.engine.pieces.Piece;
 import javalabra.shakki.engine.pieces.Rook;
 
 /**
- *Tornitussiirto.
+ * Tornitussiirto.
  */
 public abstract class CastleMove extends Move {
 
@@ -37,7 +38,7 @@ public abstract class CastleMove extends Move {
     }
 
     @Override
-    public boolean isCastleMove() {
+    public boolean isCastlingMove() {
         return true;
     }
 
@@ -48,20 +49,14 @@ public abstract class CastleMove extends Move {
 
     @Override
     public Board execute() {
-        final Board.Builder builder = new Board.Builder();
-        for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
-            // TODO hashcode and equals for pieces
-            if (!this.movedPiece.equals(piece) && !this.getCastleRook().equals(piece)) {
+        final Board.Builder builder = new Builder();
+        for (final Piece piece : this.board.getAllPieces()) {
+            if (!this.movedPiece.equals(piece) && !this.castleRook.equals(piece)) {
                 builder.setPiece(piece);
             }
         }
-        for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
-            builder.setPiece(piece);
-        }
-        // move the piece
         builder.setPiece(this.movedPiece.movePiece(this));
-        // TODO: isFirstMove field to Rook
-        builder.setPiece(new Rook(this.castleRookDestinationCoordinate, this.castleRook.getPieceColor()));
+        builder.setPiece(new Rook(this.castleRookDestinationCoordinate, this.castleRook.getPieceColor(), false));
         builder.setMoveMaker(this.board.currentPlayer().getOpponent().getPieceColor());
         return builder.build();
     }

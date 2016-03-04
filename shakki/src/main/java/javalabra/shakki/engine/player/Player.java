@@ -37,6 +37,10 @@ public abstract class Player {
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentsMoves).isEmpty();
     }
 
+    /**
+     * Metodi varmistaa, että pelaajan kuningas on laudalla.
+     * @return King, palauttaa pelaajan kuninkaan
+     */
     protected King establishKing() {
         for (final Piece piece : getActivePieces()) {
             if (piece.getPieceType().isKing()) {
@@ -62,6 +66,9 @@ public abstract class Player {
         return ImmutableList.copyOf(attackMoves);
     }
     
+    /**
+     * Metodi kertoo, onko pelaajalla siirtoja, joilla hän voi paeta shakkia.
+     */
     protected boolean hasEscapeMoves() {
         for (final Move move : this.legalMoves) {
             final MoveTransision transision = makeMove(move);
@@ -81,7 +88,7 @@ public abstract class Player {
     }
 
     public boolean isMoveLegal(final Move move) {
-        return this.legalMoves.contains(move);
+        return !(move.isCastlingMove() && isInCheck()) && this.legalMoves.contains(move);
     }
 
     public boolean isInCheck() {

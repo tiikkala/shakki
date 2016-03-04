@@ -52,9 +52,9 @@
 * Ohjeiden kirjoittaminen 1h
 * UML-kaavion päivitys & avaus sanallisesti 1h
 
-**TODO**
-* Pawn-nappulan erikoissiirrot ja niiden testaus
-* Tornitussiirrot ja niiden testaus
-* Käännä laudan rivien numerointi toisin päin BoardUtilisissa (ja koko ohjelmassa)
-* New Game -toiminto valikkoon
-* Siisti koodia (ks. checkStyle)
+**Pe 4.3.2016**
+* Erikoissiirrot 3h
+* UI-ilmoittaa matista/tasapelista 2h
+* Dokumentointi ajan tasalle 2h
+* Jarin luonti 2h
+* Tarkistus 1h

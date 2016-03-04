@@ -4,10 +4,10 @@
 
 **Ydintoiminnot:**
 * Siirron tekeminen
-* Voittaminen (ohjelma ilmoittaa matista)
+* Voittaminen (ohjelma ilmoittaa, kun jompi kumpi pelaajista voittaa tai peli päättyy tasapeliin)
 
-**Tulevat laajennukset:**
-* Pelin lataus ja tallennus pgn-muodossa
+**Tulevat laajennukset (ei vielä tässä versiossa):**
+* Pelin lataus ja tallennus
 * Tekoäly
 
 ![Määrittelyvaiheen luokkakaavio](https://github.com/tiikkala/shakki/blob/master/dokumentointi/shakki-UML.png)

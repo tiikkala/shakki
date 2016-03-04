@@ -23,12 +23,29 @@ public class King extends Piece {
 
     private static final int[] CANDIDATE_MOVE_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
 
-    public King(final int piecePosition, final PieceColor pieceColor) {
+    private final boolean isCastled;
+    private final boolean kingSideCastleCapable;
+    private final boolean queenSideCastleCapable;
+
+    public King(final int piecePosition, final PieceColor pieceColor,
+            final boolean kingSideCastleCapabel,
+            final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceColor, true);
+        this.isCastled = false;
+        this.kingSideCastleCapable = kingSideCastleCapabel;
+        this.queenSideCastleCapable = queenSideCastleCapable;
     }
 
-    public King(final int piecePosition, final PieceColor pieceColor, final boolean isFirstMove) {
+    public King(final int piecePosition,
+            final PieceColor pieceColor,
+            final boolean isFirstMove,
+            final boolean isCastled,
+            final boolean kingSideCastleCapable,
+            final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceColor, isFirstMove);
+        this.isCastled = isCastled;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
     }
 
     @Override
@@ -56,6 +73,40 @@ public class King extends Piece {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof King)) {
+            return false;
+        }
+        if (!super.equals(other)) {
+            return false;
+        }
+        final King king = (King) other;
+        return isCastled == king.isCastled;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (isCastled ? 1 : 0);
+        return result;
+    }
+
+    public boolean isCastled() {
+        return this.isCastled;
+    }
+
+    public boolean isKingSideCastleCapable() {
+        return this.kingSideCastleCapable;
+    }
+
+    public boolean isQueenSideCastleCapable() {
+        return this.queenSideCastleCapable;
+    }
+
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidatePosition) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidatePosition == -1 || candidatePosition == -9
                 || candidatePosition == 7);
@@ -73,6 +124,6 @@ public class King extends Piece {
 
     @Override
     public King movePiece(Move move) {
-        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceColor());
+        return new King(move.getDestinationCoordinate(), move.getMovedPiece().getPieceColor(), false, move.isCastlingMove(), false, false);
     }
 }
