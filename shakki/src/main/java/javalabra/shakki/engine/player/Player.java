@@ -87,14 +87,27 @@ public abstract class Player {
         return this.legalMoves;
     }
 
+    /**
+     * Tarkistaa, onko siirto laillinen.
+     * @param move tarkistettava siirto
+     * @return 
+     */
     public boolean isMoveLegal(final Move move) {
         return !(move.isCastlingMove() && isInCheck()) && this.legalMoves.contains(move);
     }
 
+    /**
+     * Tarkistaa, onko pelaaja shakissa.
+     * @return 
+     */
     public boolean isInCheck() {
         return this.isInCheck;
     }
 
+    /**
+     * Tarkistaa, onko pelaaja matissa.
+     * @return 
+     */
     public boolean isInCheckMate() {
         return this.isInCheck && !hasEscapeMoves();
     }
