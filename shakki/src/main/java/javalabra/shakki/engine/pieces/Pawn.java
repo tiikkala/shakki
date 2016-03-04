@@ -68,7 +68,6 @@ public class Pawn extends Piece {
             } else if (currentCandidateOffset == 7
                     && !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceColor.isWhite())
                     || (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceColor.isBlack()))) {
-
                 if (board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                     if (this.pieceColor != pieceOnCandidate.getPieceColor()) {
@@ -80,8 +79,9 @@ public class Pawn extends Piece {
                                     new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
                         }
                     }
+                    // tarkistetaan en passant erikoissiirron mahdollisuus
                 } else if (board.getEnPassantPawn() != null) {
-                    if (board.getEnPassantPawn().getPiecePosition() == (this.piecePosition + (this.pieceColor.getOppositeDirection()))) {
+                    if (board.getEnPassantPawn().getPiecePosition() == (this.piecePosition + this.pieceColor.getDirection()*(-1))) {
                         final Piece pieceOnCandidate = board.getEnPassantPawn();
                         if (this.pieceColor != pieceOnCandidate.getPieceColor()) {
                             if (this.pieceColor.isPawnPromotionSquare(candidateDestinationCoordinate)) {
@@ -111,8 +111,9 @@ public class Pawn extends Piece {
                                             board.getTile(candidateDestinationCoordinate).getPiece()));
                         }
                     }
+                    // tarkistetaan en passant -erikoissiirron mahdollisuus toiselle puolelle
                 } else if (board.getEnPassantPawn() != null) {
-                    if (board.getEnPassantPawn().getPiecePosition() == (this.piecePosition - (this.pieceColor.getOppositeDirection()))) {
+                    if (board.getEnPassantPawn().getPiecePosition() == (this.piecePosition - this.pieceColor.getDirection()*(-1))) {
                         final Piece pieceOnCandidate = board.getEnPassantPawn();
                         if (this.pieceColor != pieceOnCandidate.getPieceColor()) {
                             if (this.pieceColor.isPawnPromotionSquare(candidateDestinationCoordinate)) {

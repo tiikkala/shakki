@@ -11,8 +11,7 @@ import javalabra.shakki.engine.player.Player;
 import javalabra.shakki.engine.player.WhitePlayer;
 
 /**
- *
- * @author tapio
+ *Enum-class for piece color.
  */
 public enum PieceColor {
 
@@ -79,15 +78,34 @@ public enum PieceColor {
                 }
             };
 
+    /**
+     * Metodi kertoo, onko ruutu sellainen, jossa sotilaasta tulee kuningatar.
+     * @param int ruudunKoordinaatti
+     * @return 
+     */
     public abstract boolean isPawnPromotionSquare(int position);
 
+    /**
+     * Palauttaa värin hyökkäyssuunnan
+     * @return 1, jos musta, -1, jos valkoinen
+     */
     public abstract int getDirection();
 
+    /**
+     * Palauttaa värin vastustajan hyökkäyssuunnan
+     * @return -1, jos musta, 1, jos valkoinen
+     */
     public abstract int getOppositeDirection();
 
     public abstract boolean isWhite();
 
     public abstract boolean isBlack();
 
+    /**
+     * Palauttaa valkoisella värilla valkoisen ja mustalla mustan pelaajan.
+     * @param whitePlayer
+     * @param blackPlayer
+     * @return Player
+     */
     public abstract Player choosePlayer(WhitePlayer whitePlayer, BlackPlayer blackPlayer);
 }

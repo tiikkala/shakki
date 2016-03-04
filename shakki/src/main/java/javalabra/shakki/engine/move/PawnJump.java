@@ -39,7 +39,7 @@ public class PawnJump extends Move {
         }
         final Pawn movedPawn = (Pawn) this.movedPiece.movePiece(this);
         builder.setPiece(movedPawn);
- //       builder.setEnPassantPawn(movedPawn);
+        builder.setEnPassantPawn(movedPawn);
         builder.setMoveMaker(this.board.currentPlayer().getOpponent().getPieceColor());
         return builder.build();
     }
