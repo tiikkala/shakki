@@ -6,4 +6,4 @@
 
 **Siirron tekeminen**: Valkoinen pelaaja aloittaa, minkä jälkeen pelaajat vuorottelevat. Siirto tehdään valitsemalla hiiren vasemmalla näppäimellä siirrettävä nappula ja klikkaamalla vasemmalla näppäimellä ruutua, johon nappula halutaan siirtää. Nappulan valinnan voi perua klikkaamalla hiiren oikealla näppäimellä, tai klikkaamalla vasemmalla näppäiemllä sellaista pelilaudan kohtaa, johon nappula ei voi siirtyä.
 
-Tornitus tehdään kuningasta siirtämällä. Kuninkaan siirron jälkeen torni siirtyy automaattisesti oikeaan paikaan. En passant -siirto ei vielä tässä versiossa toimi (toimii toivottavasti pian).
+**Erikoissiirrot**: Tornitus tehdään kuningasta siirtämällä. Kuninkaan siirron jälkeen torni siirtyy automaattisesti oikeaan paikaan. Jos sotilas pääsee vastustajan päätyyn pelilaudalla, siitä tulee kuningatar. En passant -siirto ei vielä tässä versiossa toimi (toimii toivottavasti pian).

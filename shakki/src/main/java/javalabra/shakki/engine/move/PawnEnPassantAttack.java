@@ -26,22 +26,4 @@ public class PawnEnPassantAttack extends PawnAttackMove {
     public boolean equals(final Object other) {
         return this == other || other instanceof PawnEnPassantAttack && super.equals(other);
     }
-
-    @Override
-    public Board execute() {
-        final Board.Builder builder = new Builder();
-        for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
-            if (!this.movedPiece.equals(piece)) {
-                builder.setPiece(piece);
-            }
-        }
-        for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()) {
-            if (!piece.equals(this.getAttackedPiece())) {
-                builder.setPiece(piece);
-            }
-        }
-        builder.setPiece(this.movedPiece.movePiece(this));
-        builder.setMoveMaker(this.board.currentPlayer().getOpponent().getPieceColor());
-        return builder.build();
-    }
 }
