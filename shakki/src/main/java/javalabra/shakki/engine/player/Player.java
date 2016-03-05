@@ -39,6 +39,7 @@ public abstract class Player {
 
     /**
      * Metodi varmistaa, että pelaajan kuningas on laudalla.
+     * 
      * @return King, palauttaa pelaajan kuninkaan
      */
     protected King establishKing() {
@@ -52,8 +53,10 @@ public abstract class Player {
 
     /**
      * Metodi määrittää siirrot, joilla pääsee kyseiseen ruutuun.
+     * 
      * @param tile ruutu, johon kohdistuvat hyökkäykset halutaan selvittää
      * @param moves läpi käytävät siirrot
+     * 
      * @return palauttaa listan siirroista, joilla pääsee annettuun ruutuun
      */
     public static Collection<Move> calculateAttacksOnTile(final int tile, final Collection<Move> moves) {
@@ -68,6 +71,8 @@ public abstract class Player {
     
     /**
      * Metodi kertoo, onko pelaajalla siirtoja, joilla hän voi paeta shakkia.
+     * 
+     * return true, jos siirtoja on
      */
     protected boolean hasEscapeMoves() {
         for (final Move move : this.legalMoves) {
@@ -89,8 +94,10 @@ public abstract class Player {
 
     /**
      * Tarkistaa, onko siirto laillinen.
+     * 
      * @param move tarkistettava siirto
-     * @return 
+     * 
+     * @return true, jos siirto laillinen
      */
     public boolean isMoveLegal(final Move move) {
         return !(move.isCastlingMove() && isInCheck()) && this.legalMoves.contains(move);
@@ -98,7 +105,8 @@ public abstract class Player {
 
     /**
      * Tarkistaa, onko pelaaja shakissa.
-     * @return 
+     * 
+     * @return true, jos shakki
      */
     public boolean isInCheck() {
         return this.isInCheck;
@@ -106,7 +114,8 @@ public abstract class Player {
 
     /**
      * Tarkistaa, onko pelaaja matissa.
-     * @return 
+     * 
+     * @return true, jos matti
      */
     public boolean isInCheckMate() {
         return this.isInCheck && !hasEscapeMoves();
@@ -115,6 +124,7 @@ public abstract class Player {
     /**
      * Metodi kertoo, onko peli päätynyt tasapeliin eli tilanteeseen,
      * jossa jompi kumpi pelaajista ei pysty tekemään yhtäkään siirtoa.
+     * 
      * @return true, jos tasapeli
      */
     public boolean isStaleMate() {
@@ -126,7 +136,9 @@ public abstract class Player {
      * että siirron tehneen pelaajan kuningas jää uhatuksi. Mikäli siirto voidaan tehdä,
      * saadaan siirron jälkeisen pelilaudan tilaa koskevat tiedot MoveTransision-olion
      * transisionBoard-attribuutista.
+     * 
      * @param move siirto, jonka laillisuus halutaan tarkistaa
+     * 
      * @return MoveTransision-olio, josta selviää siirron laillisuus
      */
     public MoveTransision makeMove(final Move move) {
@@ -146,9 +158,11 @@ public abstract class Player {
     public abstract PieceColor getPieceColor();
     public abstract Player getOpponent();
     /**
-     * Metodi kertoo, onko pelaajan mahdollista tehdä tornitus-nimistä erikoissiirtoa,
+     * Metodi kertoo, onko pelaajan mahdollista tehdä tornitus-nimistä erikoissiirtoa.
+     * 
      * @param playersLegalMoves pelaajan mahdolliset siirrot
      * @param opponentsLegalMoves vastustajan mahdolliset siirrot
+     * 
      * @return palauttaa listan mahdollisista tornitussiirroista (näitä on enintään kaksi)
      */
     public abstract Collection<Move> calculateKingCastles(Collection<Move> playersLegalMoves, Collection<Move> opponentsLegalMoves);
