@@ -8,8 +8,7 @@ package javalabra.shakki;
 import javalabra.shakki.gui.Table;
 
 /**
- *
- * @author tapio
+ * Main-luokka ohjelman ajamiseen.
  */
 public class Main {
 

@@ -38,8 +38,8 @@ public class Board {
     private final BlackPlayer blackPlayer;
     private final Player currentPlayer;
 
-    final Collection<Move> whiteStandardLegalMoves;
-    final Collection<Move> blackStandardLegalMoves;
+    private final Collection<Move> whiteStandardLegalMoves;
+    private final Collection<Move> blackStandardLegalMoves;
 
     private final Pawn enPassantPawn;
 
@@ -59,6 +59,10 @@ public class Board {
         return gameBoard.get(tileCoordinate);
     }
 
+    /**
+     * Palauttaa siirtovuorossa olevan pelaajan.
+     * @return pelaaja, joka on siirtovuorossa
+     */
     public Player currentPlayer() {
         return this.currentPlayer;
     }
@@ -76,6 +80,10 @@ public class Board {
         return builder.toString();
     }
     
+    /**
+     * Palauttaa en passant -erikoissiirrolla syötävän sotilaan.
+     * @return en passant -erikoissiirrolla syötävän sotilas
+     */
       public Pawn getEnPassantPawn() {
         return this.enPassantPawn;
     }
@@ -100,6 +108,11 @@ public class Board {
         return this.blackPlayer;
     }
 
+    /**
+     * Palauttaa listan siirroista, jotka pelaaja voi laudalla tehdä.
+     * @param pieces pelaajan nappulat
+     * @return kokoelma mahdollisista siirroista
+     */
     private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
         final List<Move> legalMoves = new ArrayList();
         for (final Piece piece : pieces) {
@@ -108,6 +121,12 @@ public class Board {
         return ImmutableList.copyOf(legalMoves);
     }
 
+    /**
+     * Palauttaa listan pelaajan käytetävissä olevista nappuloista.
+     * @param gameBoard pelilauta
+     * @param pieceColor nappuloidne väri
+     * @return kokoelma käytettävissä olevista nappuloista
+     */
     private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard,
             final PieceColor pieceColor) {
         final List<Piece> activePieces = new ArrayList<>();
@@ -232,6 +251,14 @@ public class Board {
             return new Board(this);
         }
 
+        /**
+         * Metodi asettaa en passant -eirkoissiirrolla mahdollisesti
+         * syötävän sotilaan.
+         * 
+         * @param enPassantPawn
+         * @return Builder-olio palauttaa itsentä  päivitetyllä en passant -
+         * tiedolla varustettuna
+         */
         public Builder setEnPassantPawn(final Pawn enPassantPawn) {
             this.enPassantPawn = enPassantPawn;
             return this;
