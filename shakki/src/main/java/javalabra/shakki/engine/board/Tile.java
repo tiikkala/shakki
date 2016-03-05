@@ -15,6 +15,10 @@ import javalabra.shakki.engine.pieces.Piece;
 public abstract class Tile {
 
     protected final int tileCoordinate;
+    
+    /**
+     * Tyhjät ruudut "välimuistissa".
+     */
     private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
@@ -31,8 +35,10 @@ public abstract class Tile {
     
     /**
      * Metodi luo pelilaudan ruudun. 
+     * 
      * @param tileCoordinate ruudun koordinaattori
      * @param piece ruutuun tuleva nappula
+     * 
      * @return Jos piece-parametrin on null, palauttaa EmptyTile-olion;
      * muuten OccupiedTile-olion, jolle annetaan piece parametrina.
      */

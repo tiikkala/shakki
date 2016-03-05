@@ -68,7 +68,9 @@ public class BoardUtils {
 
     /**
      * Sarakeapulistan alustus.
+     * 
      * @param columnNumber sarakkeen numero
+     * 
      * @return palauttaa listan, jossa on parametrina annetun sarakkeen kohdalla true
      */
     private static boolean[] initColumn(int columnNumber) {
@@ -82,8 +84,10 @@ public class BoardUtils {
 
     /**
      * Kertoo, onko parametrina annettu koordinaatti shakkilaudalla.
+     * 
      * @param coordinate koordinaatti
-     * @return 
+     * 
+     * @return true, jos koordinaatti on laudalla
      */
     public static boolean isValidTileCoordinate(int coordinate) {
         return coordinate >= 0 && coordinate < 64;
@@ -92,6 +96,7 @@ public class BoardUtils {
     /**
      * Metodi alustaa numerokoordinaatit ja numero-kirjain-merkinnän yhdistävän
      * hajautustaulun.
+     * 
      * @return hajautustaulu, joka yhdistää numerokoordinaatit ja numero-kirjain-
      * merkinnän
      */

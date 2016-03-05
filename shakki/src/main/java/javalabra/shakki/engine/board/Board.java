@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javalabra.shakki.engine.board;
 
 import javalabra.shakki.engine.move.Move;
@@ -61,6 +56,7 @@ public class Board {
 
     /**
      * Palauttaa siirtovuorossa olevan pelaajan.
+     * 
      * @return pelaaja, joka on siirtovuorossa
      */
     public Player currentPlayer() {
@@ -110,7 +106,9 @@ public class Board {
 
     /**
      * Palauttaa listan siirroista, jotka pelaaja voi laudalla tehdä.
+     * 
      * @param pieces pelaajan nappulat
+     * 
      * @return kokoelma mahdollisista siirroista
      */
     private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
@@ -125,6 +123,7 @@ public class Board {
      * Palauttaa listan pelaajan käytetävissä olevista nappuloista.
      * @param gameBoard pelilauta
      * @param pieceColor nappuloidne väri
+     * 
      * @return kokoelma käytettävissä olevista nappuloista
      */
     private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard,
@@ -145,6 +144,7 @@ public class Board {
      * Metodi luo Builder-olion tilaa vastaavan listan pelilaudan ruuduista.
      *
      * @param builder pelinappuloinden paikata tallennettuna builder-olioon
+     * 
      * @return palauttaa pelilaudan ruudut listana
      */
     private static List<Tile> createGameBoard(final Builder builder) {
@@ -222,6 +222,7 @@ public class Board {
          * boardConfig-hajautustauluun.
          *
          * @param piece asetettava nappuli
+         * 
          * @return Builder-olio palauttaa itsensä päivitetyllä hajautustaululla
          * varustettuna
          */
@@ -234,6 +235,7 @@ public class Board {
          * Metodi määrittää, kene vuoro on seuraavaksi.
          *
          * @param nextMoveMaker seuraavaksi vuorossa oleva pelaaja
+         * 
          * @return Builder-olio palauttaa itsensä päivitetyllä
          * nextMoveMaker-arvolla varustettuna
          */
@@ -256,6 +258,7 @@ public class Board {
          * syötävän sotilaan.
          * 
          * @param enPassantPawn
+         * 
          * @return Builder-olio palauttaa itsentä  päivitetyllä en passant -
          * tiedolla varustettuna
          */

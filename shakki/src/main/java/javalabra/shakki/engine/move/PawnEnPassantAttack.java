@@ -27,6 +27,7 @@ public class PawnEnPassantAttack extends PawnAttackMove {
         return this == other || other instanceof PawnEnPassantAttack && super.equals(other);
     }
 
+    @Override
     public Board execute() {
         final Board.Builder builder = new Builder();
         for (final Piece piece : this.board.currentPlayer().getActivePieces()) {
@@ -41,16 +42,6 @@ public class PawnEnPassantAttack extends PawnAttackMove {
         }
         builder.setPiece(this.movedPiece.movePiece(this));
         builder.setMoveMaker(this.board.currentPlayer().getOpponent().getPieceColor());
-        return builder.build();
-    }
-
-    public Board undo() {
-        final Board.Builder builder = new Builder();
-        for (final Piece piece : this.board.getAllPieces()) {
-            builder.setPiece(piece);
-        }
-        builder.setEnPassantPawn((Pawn) this.getAttackedPiece());
-        builder.setMoveMaker(this.board.currentPlayer().getPieceColor());
         return builder.build();
     }
 }
