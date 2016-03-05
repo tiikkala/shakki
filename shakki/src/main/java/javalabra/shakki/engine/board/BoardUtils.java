@@ -15,7 +15,8 @@ import java.util.Map;
 public class BoardUtils {
 
     /**
-     * 
+     *Apulistoja, joiden avulla voi helposti tutkia, sijaitseeko jonkin nappula
+     * tai ruutu tietyllä rivillä tai sarakkeella.
      */
     public static final boolean[] FIRST_COLUMN = initColumn(0);
     public static final boolean[] SECOND_COLUMN = initColumn(1);
@@ -34,17 +35,28 @@ public class BoardUtils {
     public static final boolean[] SEVENTH_ROW = initRow(48);
     public static final boolean[] EIGHTH_ROW = initRow(56);
 
+    /**
+     *Vakioita esimerkiksi for-looppien kirjoittamisen helpottamiseksi.
+     */
     public static final int START_TILE_INDEX = 0;
     public static final int NUM_TILES = 64;
     public static final int NUM_TILES_PER_ROW = 8;
 
     public static final String[] ALGEBRAIC_NOTATION = initializeAlgebraicNotation();
+    /**
+     * Hajautustaulu, jossa ruudun sijaintia muodossa A4 vastaa kokonaisluku koordinaatti. (A4 = 32)
+     */
     public static final Map<String, Integer> POSITION_TO_COORDINATE = initializePositionToCoordinateMap();
 
     private BoardUtils() {
         throw new RuntimeException("You cannot instantiate me!");
     }
 
+    /**
+     * Riviapulistan alustus.
+     * @param rowNumber rivin numero
+     * @return  palatuttaa listan, jossa on parametrina annetun rivin kohdalla on true
+     */
     private static boolean[] initRow(int rowNumber) {
         final boolean[] row = new boolean[NUM_TILES];
         do {
@@ -54,6 +66,11 @@ public class BoardUtils {
         return row;
     }
 
+    /**
+     * Sarakeapulistan alustus.
+     * @param columnNumber sarakkeen numero
+     * @return palauttaa listan, jossa on parametrina annetun sarakkeen kohdalla true
+     */
     private static boolean[] initColumn(int columnNumber) {
         final boolean[] column = new boolean[64];
         do {
@@ -63,10 +80,21 @@ public class BoardUtils {
         return column;
     }
 
+    /**
+     * Kertoo, onko parametrina annettu koordinaatti shakkilaudalla.
+     * @param coordinate koordinaatti
+     * @return 
+     */
     public static boolean isValidTileCoordinate(int coordinate) {
         return coordinate >= 0 && coordinate < 64;
     }
 
+    /**
+     * Metodi alustaa numerokoordinaatit ja numero-kirjain-merkinnän yhdistävän
+     * hajautustaulun.
+     * @return hajautustaulu, joka yhdistää numerokoordinaatit ja numero-kirjain-
+     * merkinnän
+     */
     private static Map<String, Integer> initializePositionToCoordinateMap() {
         final Map<String, Integer> positionToCoordinate = new HashMap<>();
         for (int i = START_TILE_INDEX; i < NUM_TILES; i++) {
