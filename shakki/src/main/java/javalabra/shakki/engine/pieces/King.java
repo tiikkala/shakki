@@ -63,8 +63,8 @@ public class King extends Piece {
                     legalMoves.add(new NormalMove(board, this, candidateDestinationCoordinate));
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
-                    final PieceColor pieceColor = pieceAtDestination.getPieceColor();
-                    if (this.pieceColor != pieceColor) {
+                    final PieceColor destinationPieceColor = pieceAtDestination.getPieceColor();
+                    if (this.pieceColor != destinationPieceColor) {
                         legalMoves.add(new AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }

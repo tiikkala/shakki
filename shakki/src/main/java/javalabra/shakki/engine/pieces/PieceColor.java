@@ -101,8 +101,15 @@ public enum PieceColor {
      */
     public abstract int getOppositeDirection();
 
+    
+    /**
+     * Palauttaa true, jos nappulan väri on valkoinen.
+     */
     public abstract boolean isWhite();
 
+    /**
+     * Palauttaa true, jos nappulan väri on musta.
+     */
     public abstract boolean isBlack();
 
     /**

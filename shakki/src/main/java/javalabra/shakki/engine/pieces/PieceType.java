@@ -6,8 +6,7 @@
 package javalabra.shakki.engine.pieces;
 
 /**
- *
- * @author tapio
+ * Enum-luokka eri nappulatyypeille.
  */
 public enum PieceType {
 
@@ -89,7 +88,13 @@ public enum PieceType {
         return this.pieceName;
     }
 
+    /**
+     * Palauttaa true, jos nappula on kuningas.
+     */
     public abstract boolean isKing();
 
+    /**
+     * Palauttaa true, jos nappula on torni.
+     */
     public abstract boolean isRook();
 }
